@@ -11,7 +11,6 @@
             $con = $this->connect();
             $stm = $con->prepare($query);
             $check = $stm->execute();
-
             if ($check){
                 $result = $stm->fetchAll(PDO::FETCH_OBJ);
                 if (is_array($result) && count($result) > 0){

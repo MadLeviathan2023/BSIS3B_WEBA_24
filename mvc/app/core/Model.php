@@ -34,7 +34,7 @@
         public function insert($data){
             $columns = implode(',', array_keys($data));
             $values = implode(',:', array_keys($data));
-            $query = "INSERT INTO $this->table (column) VALUES (:$values)";
+            $query = "INSERT INTO $this->table ($columns) VALUES (:$values)";
             show($query);
             $this->query($query, $data);
 
