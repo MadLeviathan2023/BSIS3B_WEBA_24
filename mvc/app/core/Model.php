@@ -56,7 +56,7 @@
 
         public function delete($id, $column = 'id'){
             $data[$column] = $id;
-            $query = "DELETE FROM $this-.table WHERE $column = :$column";
+            $query = "DELETE FROM $this->table WHERE $column = :$column";
 
             $this->query($query, $data);
 
