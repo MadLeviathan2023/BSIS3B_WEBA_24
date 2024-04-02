@@ -49,7 +49,7 @@
             }
             $query = trim($query, ", ");
             $query .= " WHERE $column = :$column";
-            $data[column] = $id;
+            $data[$column] = $id;
             $this->query($query, $data);
             return false;
         }
