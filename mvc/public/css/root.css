@@ -1,0 +1,14 @@
+:root{
+    --oxford-blue: #0a2342ff;
+    --ghost-white: #e8e9f3ff;
+    --bright-pink-crayola: #fc6471ff;
+    --teal: #028090ff;
+    --lime: #ceff1aff;
+    font-size: 16px;
+    font-family: Poppins;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url(../fonts/Poppins-Regular.ttf);
+}
