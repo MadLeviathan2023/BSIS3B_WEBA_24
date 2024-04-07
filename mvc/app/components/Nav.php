@@ -1,4 +1,10 @@
 <?php
     class Nav extends Component{
-        public $active = 'home';
+        protected $active = 'home';
+        
+        public function setActive($option){
+            if (!empty($option)){
+                $this->active = $option;
+            }
+        }
     }

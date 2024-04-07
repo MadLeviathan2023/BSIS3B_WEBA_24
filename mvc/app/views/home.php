@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/root.css"/>
-    <link rel="stylesheet" href="css/nav.css"/>
-    <link rel="stylesheet" href="css/home.css"/>
+    <?php
+        $link = new CSSLink();
+        $link->cdnjs();
+        $link->add('root');
+        $link->add('nav');
+        $link->add('home');
+    ?>
     <title><?= APP_NAME ?></title>
 </head>
 <body>

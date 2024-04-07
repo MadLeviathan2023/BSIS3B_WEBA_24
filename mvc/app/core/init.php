@@ -2,6 +2,7 @@
     require 'config.php';
     require 'functions.php';
     require 'App.php';
+    require 'CSSLink.php';
     require 'Component.php';
     require 'Controller.php';
     require 'Database.php';
