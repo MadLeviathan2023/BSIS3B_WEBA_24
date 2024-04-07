@@ -7,9 +7,9 @@
         $link = new Link();
         $link->logo();
         $link->cdnjs();
-        $link->add('root');
-        $link->add('nav');
-        $link->add('home');
+        $link->addStyle('root');
+        $link->addStyle('nav');
+        $link->addStyle('home');
     ?>
     <title><?= APP_NAME ?></title>
 </head>

@@ -6,7 +6,7 @@
             <?php
         }
 
-        public function add($filename){
+        public function addStyle($filename){
             ?>
                 <link rel="stylesheet" href="css/<?= strtolower($filename) ?>.css"/>
             <?php
