@@ -1,5 +1,11 @@
 <?php
-    class CSSLink{
+    class Link{
+        public function logo(){
+            ?>
+                <link rel="icon" href="images/<?= APP_LOGO ?>" type="image/png"/>
+            <?php
+        }
+
         public function add($filename){
             ?>
                 <link rel="stylesheet" href="css/<?= strtolower($filename) ?>.css"/>

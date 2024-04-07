@@ -2,10 +2,10 @@
     require 'config.php';
     require 'functions.php';
     require 'App.php';
-    require 'CSSLink.php';
     require 'Component.php';
     require 'Controller.php';
     require 'Database.php';
+    require 'Link.php';
     require 'Model.php';
 
     spl_autoload_register(function ($class_name){
