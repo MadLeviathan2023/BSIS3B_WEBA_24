@@ -14,9 +14,7 @@
             }
             else{
                 $template404 = '../app/templates/template404.php';
-                if (file_exists($template404)){
-                    require $template404;
-                }
+                require $template404;
             }
         }
     }
