@@ -1,8 +1,8 @@
 export class TypingAnim {
-    constructor(msgArr, elem, loop = true, intervalDelay = 100) {
+    constructor(msgArr, elem, loop = true) {
         this.msgArr = msgArr;
         this.elem = elem;
-        this.intervalDelay = intervalDelay;
+        this.intervalDelay = 100;
         this.i = 0;
         this.j = 0;
         this.k = 0;
