@@ -29,6 +29,6 @@
             <img src="images/<?= APP_LOGO ?>" alt="Logo">
         </div>
     </div>
-    <script type="text/javascript" src="js/home.js"></script>
+    <script type="module" src="js/home.js"></script>
 </body>
 </html>

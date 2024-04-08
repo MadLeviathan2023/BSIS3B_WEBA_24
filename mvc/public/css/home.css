@@ -61,3 +61,41 @@ body{
     position: relative;
     z-index: 1;
 }
+
+.welcome-msg span{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    animation: bounce 250ms alternate;
+    transition: ease-in-out 250ms;
+}
+
+@keyframes bounce {
+    0% {
+        bottom: 0;
+        color: var(--lime);
+    }
+    50% {
+        bottom: 5px;
+    }
+    100% {
+        bottom: 0;
+        color: inherit;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .welcome-container{
+        display: block;
+        height: 100vh;
+    }
+    .welcome-text{
+        width: 100%;
+        height: 50vh;
+        text-align: center;
+    }
+    .app-logo{
+        width: 100%;
+        height: 50vh;
+    }
+}
