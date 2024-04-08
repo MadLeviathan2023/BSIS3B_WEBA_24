@@ -19,7 +19,8 @@ export class TypingAnim {
                     spanElem.innerHTML = this.msgArr[this.i][this.j];
                     this.elem.append(spanElem);
                     this.j++;
-                } else if (this.j === this.msgArr[this.i].length) {
+                }
+                else if (this.j === this.msgArr[this.i].length) {
                     if (this.k === 0) {
                         this.stop();
                         if (this.i < this.msgArr.length && this.loop == true){
@@ -27,7 +28,8 @@ export class TypingAnim {
                                 this.start();
                             }, 750);
                         }
-                    } else if (this.k > 0) {
+                    }
+                    else if (this.k > 0) {
                         if (this.intervalDelay === this.defaultInterval) {
                             this._changeIntervalDelay(50);
                         }
@@ -43,7 +45,7 @@ export class TypingAnim {
                     this.k++;
                 }
             }
-            if (this.i === this.msgArr.length) {
+            else if (this.i === this.msgArr.length) {
                 this.i = 0;
             }
         } catch (err) {
