@@ -1,15 +1,16 @@
 export class TypingAnim {
-    constructor(msgArr, elem, intervalDelay = 100) {
+    constructor(msgArr, elem, loop = true, intervalDelay = 100) {
         this.msgArr = msgArr;
         this.elem = elem;
         this.intervalDelay = intervalDelay;
         this.i = 0;
         this.j = 0;
         this.k = 0;
-        this.timer = setInterval(this.animatedWelcomeMsg.bind(this), this.intervalDelay);
+        this.loop = loop;
+        this.timer;
     }
 
-    animatedWelcomeMsg() {
+    _animateMsg() {
         try {
             if (this.i < this.msgArr.length) {
                 if (this.j < this.msgArr[this.i].length) {
@@ -21,16 +22,18 @@ export class TypingAnim {
                     if (this.k === 0) {
                         clearInterval(this.timer);
                         setTimeout(() => {
-                            this.timer = setInterval(this.animatedWelcomeMsg.bind(this), this.intervalDelay);
+                            if (this.i < this.msgArr.length && this.loop == true){
+                                this.timer = setInterval(this._animateMsg.bind(this), this.intervalDelay);
+                            }
                         }, 750);
                     } else if (this.k > 0) {
                         if (this.intervalDelay === 100) {
-                            this.changeIntervalDelay(50);
+                            this._changeIntervalDelay(50);
                         }
                         const sliced = this.msgArr[this.i].slice(0, -this.k);
                         this.elem.innerHTML = sliced;
                         if (this.k === this.j) {
-                            this.changeIntervalDelay(100);
+                            this._changeIntervalDelay(100);
                             this.j = 0;
                             this.k = -1;
                             this.i++;
@@ -40,7 +43,9 @@ export class TypingAnim {
                 }
             }
             if (this.i === this.msgArr.length) {
-                this.i = 0;
+                if (this.loop == true){
+                    this.i = 0;
+                }
             }
         } catch (err) {
             console.log(err);
@@ -48,9 +53,17 @@ export class TypingAnim {
         }
     }
 
-    changeIntervalDelay(newDelay) {
+    _changeIntervalDelay(newDelay) {
         this.intervalDelay = newDelay;
         clearInterval(this.timer);
-        this.timer = setInterval(this.animatedWelcomeMsg.bind(this), this.intervalDelay);
+        this.timer = setInterval(this._animateMsg.bind(this), this.intervalDelay);
+    }
+
+    start(){
+        this.timer = setInterval(this._animateMsg.bind(this), this.intervalDelay);
+    }
+
+    stop(){
+        clearInterval(this.timer);
     }
 }
