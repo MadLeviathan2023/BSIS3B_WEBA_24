@@ -21,11 +21,11 @@ export class TypingAnim {
                 } else if (this.j === this.msgArr[this.i].length) {
                     if (this.k === 0) {
                         clearInterval(this.timer);
-                        setTimeout(() => {
-                            if (this.i < this.msgArr.length && this.loop == true){
-                                this.timer = setInterval(this._animateMsg.bind(this), this.intervalDelay);
-                            }
-                        }, 750);
+                        if (this.i < this.msgArr.length && this.loop == true){
+                            setTimeout(() => {
+                                    this.timer = setInterval(this._animateMsg.bind(this), this.intervalDelay);
+                            }, 750);
+                        }
                     } else if (this.k > 0) {
                         if (this.intervalDelay === 100) {
                             this._changeIntervalDelay(50);
@@ -43,9 +43,7 @@ export class TypingAnim {
                 }
             }
             if (this.i === this.msgArr.length) {
-                if (this.loop == true){
-                    this.i = 0;
-                }
+                this.i = 0;
             }
         } catch (err) {
             console.log(err);
