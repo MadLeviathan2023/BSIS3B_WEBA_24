@@ -36,6 +36,7 @@ export class TypingAnim {
                         const sliced = this.msgArr[this.i].slice(0, -this.k);
                         this.elem.innerHTML = sliced;
                         if (this.k === this.j) {
+                            this.intervalDelay = this.defaultInterval;
                             this._changeIntervalDelay(this.intervalDelay);
                             this.j = 0;
                             this.k = -1;
