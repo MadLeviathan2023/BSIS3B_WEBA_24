@@ -24,7 +24,7 @@ export class TypingAnim {
                         this.stop();
                         if (this.i < this.msgArr.length && this.loop == true){
                             setTimeout(() => {
-                                    this.start();
+                                this.start();
                             }, 750);
                         }
                     } else if (this.k > 0) {
