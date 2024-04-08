@@ -5,8 +5,8 @@ export class TypingAnim {
         this._defaultInterval = intervalDelay;
         this._intervalDelay = intervalDelay;
         this._ia = 0;
-        this._iab = 0;
-        this._iac = 0;
+        this._ib = 0;
+        this._ic = 0;
         this._loop = loop;
         this._timer;
     }
@@ -14,14 +14,14 @@ export class TypingAnim {
     _animateMsg() {
         try {
             if (this._ia < this._msgArr.length) {
-                if (this._iab < this._msgArr[this._ia].length) {
+                if (this._ib < this._msgArr[this._ia].length) {
                     const spanElem = document.createElement('span');
-                    spanElem.innerHTML = this._msgArr[this._ia][this._iab];
+                    spanElem.innerHTML = this._msgArr[this._ia][this._ib];
                     this._elem.append(spanElem);
-                    this._iab++;
+                    this._ib++;
                 }
-                else if (this._iab === this._msgArr[this._ia].length) {
-                    if (this._iac === 0) {
+                else if (this._ib === this._msgArr[this._ia].length) {
+                    if (this._ic === 0) {
                         this.stop();
                         if (this._ia < this._msgArr.length && this._loop == true){
                             setTimeout(() => {
@@ -29,21 +29,21 @@ export class TypingAnim {
                             }, 750);
                         }
                     }
-                    else if (this._iac > 0) {
+                    else if (this._ic > 0) {
                         if (this._intervalDelay === this._defaultInterval) {
                             this._changeIntervalDelay(50);
                         }
-                        const sliced = this._msgArr[this._ia].slice(0, -this._iac);
+                        const sliced = this._msgArr[this._ia].slice(0, -this._ic);
                         this._elem.innerHTML = sliced;
-                        if (this._iac === this._iab) {
+                        if (this._ic === this._ib) {
                             this._intervalDelay = this._defaultInterval;
                             this._changeIntervalDelay(this._intervalDelay);
-                            this._iab = 0;
-                            this._iac = -1;
+                            this._ib = 0;
+                            this._ic = -1;
                             this._ia++;
                         }
                     }
-                    this._iac++;
+                    this._ic++;
                 }
             }
             else if (this._ia === this._msgArr.length) {
