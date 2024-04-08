@@ -1,53 +1,53 @@
 export class TypingAnim {
     constructor(msgArr, elem, loop = true, intervalDelay = 100) {
-        this.msgArr = msgArr;
-        this.elem = elem;
-        this.defaultInterval = intervalDelay;
-        this.intervalDelay = intervalDelay;
-        this.i = 0;
-        this.j = 0;
-        this.k = 0;
-        this.loop = loop;
-        this.timer;
+        this._msgArr = msgArr;
+        this._elem = elem;
+        this._defaultInterval = intervalDelay;
+        this._intervalDelay = intervalDelay;
+        this._ia = 0;
+        this._iab = 0;
+        this._iac = 0;
+        this._loop = loop;
+        this._timer;
     }
 
     _animateMsg() {
         try {
-            if (this.i < this.msgArr.length) {
-                if (this.j < this.msgArr[this.i].length) {
+            if (this._ia < this._msgArr.length) {
+                if (this._iab < this._msgArr[this._ia].length) {
                     const spanElem = document.createElement('span');
-                    spanElem.innerHTML = this.msgArr[this.i][this.j];
-                    this.elem.append(spanElem);
-                    this.j++;
+                    spanElem.innerHTML = this._msgArr[this._ia][this._iab];
+                    this._elem.append(spanElem);
+                    this._iab++;
                 }
-                else if (this.j === this.msgArr[this.i].length) {
-                    if (this.k === 0) {
+                else if (this._iab === this._msgArr[this._ia].length) {
+                    if (this._iac === 0) {
                         this.stop();
-                        if (this.i < this.msgArr.length && this.loop == true){
+                        if (this._ia < this._msgArr.length && this._loop == true){
                             setTimeout(() => {
                                 this.start();
                             }, 750);
                         }
                     }
-                    else if (this.k > 0) {
-                        if (this.intervalDelay === this.defaultInterval) {
+                    else if (this._iac > 0) {
+                        if (this._intervalDelay === this._defaultInterval) {
                             this._changeIntervalDelay(50);
                         }
-                        const sliced = this.msgArr[this.i].slice(0, -this.k);
-                        this.elem.innerHTML = sliced;
-                        if (this.k === this.j) {
-                            this.intervalDelay = this.defaultInterval;
-                            this._changeIntervalDelay(this.intervalDelay);
-                            this.j = 0;
-                            this.k = -1;
-                            this.i++;
+                        const sliced = this._msgArr[this._ia].slice(0, -this._iac);
+                        this._elem.innerHTML = sliced;
+                        if (this._iac === this._iab) {
+                            this._intervalDelay = this._defaultInterval;
+                            this._changeIntervalDelay(this._intervalDelay);
+                            this._iab = 0;
+                            this._iac = -1;
+                            this._ia++;
                         }
                     }
-                    this.k++;
+                    this._iac++;
                 }
             }
-            else if (this.i === this.msgArr.length) {
-                this.i = 0;
+            else if (this._ia === this._msgArr.length) {
+                this._ia = 0;
             }
         } catch (err) {
             console.log(err);
@@ -56,16 +56,16 @@ export class TypingAnim {
     }
 
     _changeIntervalDelay(newDelay) {
-        this.intervalDelay = newDelay;
+        this._intervalDelay = newDelay;
         this.stop();
         this.start();
     }
 
     start(){
-        this.timer = setInterval(this._animateMsg.bind(this), this.intervalDelay);
+        this._timer = setInterval(this._animateMsg.bind(this), this._intervalDelay);
     }
 
     stop(){
-        clearInterval(this.timer);
+        clearInterval(this._timer);
     }
 }
