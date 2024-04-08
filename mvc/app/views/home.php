@@ -21,15 +21,14 @@
     <div class="welcome-container">
         <div class="welcome-text">
             <div class="text-container">
-                <h1>Welcome!</h1>
-                <p>
-                    &nbsp;to where exceptional flavors and warm hospitality await you.
-                </p>
+                <h1>Welcome!</h1>&nbsp;
+                <p class="welcome-msg"></p><p>|</p>
             </div>
         </div>
         <div class="app-logo">
             <img src="images/<?= APP_LOGO ?>" alt="Logo">
         </div>
     </div>
+    <script type="text/javascript" src="js/home.js"></script>
 </body>
 </html>
