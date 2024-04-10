@@ -7,9 +7,11 @@
         }
 
         public function addStyle($filename){
-            ?>
-                <link rel="stylesheet" href="css/<?= strtolower($filename) ?>.css"/>
-            <?php
+            if (!empty($filename)){
+                ?>
+                    <link rel="stylesheet" href="css/<?= strtolower($filename) ?>.css"/>
+                <?php
+            }
         }
 
         public function cdnjs(){
