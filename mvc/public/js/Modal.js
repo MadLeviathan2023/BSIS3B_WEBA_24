@@ -11,59 +11,59 @@ export const ModalResult = {
     OK: 'OK'
 }
 
-const btnCancel = document.getElementById("modal-btn-cancel");
-const btnYes = document.getElementById("modal-btn-yes");
-const btnNo = document.getElementById("modal-btn-no");
-const btnOK = document.getElementById("modal-btn-ok");
-const modal = document.getElementById("modal");
-const yesNoContainer = document.querySelector(".modal-btn-yes-no-container");
-const okContainer = document.querySelector(".modal-btn-ok-container");
+const BTN_CANCEL = document.getElementById("modal-btn-cancel");
+const BTN_YES = document.getElementById("modal-btn-yes");
+const BTN_NO = document.getElementById("modal-btn-no");
+const BTN_OK = document.getElementById("modal-btn-ok");
+const MODAL = document.getElementById("modal");
+const BTN_YESNO_CONTAINER = document.querySelector(".modal-btn-yes-no-container");
+const BTN_OK_CONTAINER = document.querySelector(".modal-btn-ok-container");
 var clickedButton;
 
 export const Modal = {
-    show: async (msg, caption, modalBtn) => {
+    Show: async (msg, caption, modalBtn) => {
         clickedButton = undefined;
 
-        yesNoContainer.style.display = 'none';
-        btnCancel.style.display = 'none';
-        okContainer.style.display = 'none';
+        BTN_YESNO_CONTAINER.style.display = 'none';
+        BTN_CANCEL.style.display = 'none';
+        BTN_OK_CONTAINER.style.display = 'none';
 
-        btnYes.onclick = () => {
-            Modal.close(ModalResult.Yes);
+        BTN_YES.onclick = () => {
+            Modal.Close(ModalResult.Yes);
         }
-        btnNo.onclick = () => {            
-            Modal.close(ModalResult.No);
+        BTN_NO.onclick = () => {            
+            Modal.Close(ModalResult.No);
         }
-        btnCancel.onclick = () => {
-            Modal.close(ModalResult.Cancel);
+        BTN_CANCEL.onclick = () => {
+            Modal.Close(ModalResult.Cancel);
         }
-        btnOK.onclick = () => {
-            Modal.close(ModalResult.OK);
+        BTN_OK.onclick = () => {
+            Modal.Close(ModalResult.OK);
         }
 
-        const modalMsg = document.getElementById("modal-msg");
-        const modalCaption = document.getElementById("modal-caption");              
+        const MODAL_MSG = document.getElementById("modal-msg");
+        const MODAL_CAPTION = document.getElementById("modal-caption");              
 
-        modalCaption.innerHTML = caption;
-        modalMsg.innerHTML = msg;
+        MODAL_CAPTION.innerHTML = caption;
+        MODAL_MSG.innerHTML = msg;
 
         switch (modalBtn){
             case ModalButton.YesNo:
-                yesNoContainer.style.display = 'block';
+                BTN_YESNO_CONTAINER.style.display = 'block';
                 break;
             case ModalButton.YesNoCancel:
-                yesNoContainer.style.display = 'block';
-                btnCancel.style.display = 'inline-block';
+                BTN_YESNO_CONTAINER.style.display = 'block';
+                BTN_CANCEL.style.display = 'inline-block';
                 break;
             case ModalButton.OK:
-                okContainer.style.display = 'block';
+                BTN_OK_CONTAINER.style.display = 'block';
                 break;
             default:
-                okContainer.style.display = 'block';
+                BTN_OK_CONTAINER.style.display = 'block';
                 break;
         }
 
-        modal.showModal();
+        MODAL.showModal();
 
         return new Promise((resolve, reject) => {
             let timer = setInterval(() => {
@@ -79,8 +79,8 @@ export const Modal = {
             return err;
         });
     },
-    close: (btn) => {
+    Close: (btn) => {
         clickedButton = btn;
-        modal.close();
+        MODAL.close();
     }
 }
