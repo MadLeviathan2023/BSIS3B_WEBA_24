@@ -11,49 +11,35 @@ export const ModalResult = {
     OK: 'OK'
 }
 
+const btnCancel = document.getElementById("modal-btn-cancel");
+const btnYes = document.getElementById("modal-btn-yes");
+const btnNo = document.getElementById("modal-btn-no");
+const btnOK = document.getElementById("modal-btn-ok");
+const modal = document.getElementById("modal");
+const yesNoContainer = document.querySelector(".modal-btn-yes-no-container");
+const okContainer = document.querySelector(".modal-btn-ok-container");
+var clickedButton;
+
 export class Modal{
-    static get btnCancel() {
-        return document.getElementById("modal-btn-cancel");
-    }
-    static get btnYes() {
-        return document.getElementById("modal-btn-yes");
-    } 
-    static get btnNo() {
-        return document.getElementById("modal-btn-no");
-    }
-    static get btnOK() {
-        return document.getElementById("modal-btn-ok");
-    } 
-    static get modal() {
-        return document.getElementById("modal");
-    }
-    static get yesNoContainer() {
-        return document.querySelector(".modal-btn-yes-no-container");
-    }
-    static get okContainer() {
-        return document.querySelector(".modal-btn-ok-container");
-    }
-    static clickedButton;
-
     constructor(){
-        Modal.clickedButton = undefined;
+        clickedButton = undefined;
 
-        Modal.yesNoContainer.style.display = 'none';
-        Modal.btnCancel.style.display = 'none';
-        Modal.okContainer.style.display = 'none';
+        yesNoContainer.style.display = 'none';
+        btnCancel.style.display = 'none';
+        okContainer.style.display = 'none';
 
-        Modal.btnYes.onclick = () => {
+        btnYes.onclick = () => {
             this.close(ModalResult.Yes);
         }
-        Modal.btnNo.onclick = () => {            
+        btnNo.onclick = () => {            
             this.close(ModalResult.No);
         }
-        Modal.btnCancel.onclick = () => {
+        btnCancel.onclick = () => {
             this.close(ModalResult.Cancel);
         }
-        Modal.btnOK.onclick = () => {
+        btnOK.onclick = () => {
             this.close(ModalResult.OK);
-        }    
+        }
     }
 
     async show(msg, caption, modalBtn){
@@ -65,27 +51,27 @@ export class Modal{
 
         switch (modalBtn){
             case ModalButton.Yes:
-                Modal.yesNoContainer.style.display = 'block';
+                yesNoContainer.style.display = 'block';
                 break;
             case ModalButton.YesNoCancel:
-                Modal.yesNoContainer.style.display = 'block';
-                Modal.btnCancel.style.display = 'inline-block';
+                yesNoContainer.style.display = 'block';
+                btnCancel.style.display = 'inline-block';
                 break;
             case ModalButton.OK:
-                Modal.okContainer.style.display = 'block';
+                okContainer.style.display = 'block';
                 break;
             default:
-                Modal.okContainer.style.display = 'block';
+                okContainer.style.display = 'block';
                 break;
         }
 
-        Modal.modal.showModal();
+        modal.showModal();
 
         return new Promise((resolve, reject) => {
             let timer = setInterval(() => {
-                if (Modal.clickedButton !== undefined){
+                if (clickedButton !== undefined){
                     clearInterval(timer);
-                    resolve(Modal.clickedButton);
+                    resolve(clickedButton);
                     reject('Failed! Something went wrong.');
                 }
             }, 500);
@@ -96,8 +82,8 @@ export class Modal{
         });
     }
 
-    close(clickedBtn) {
-        Modal.clickedButton = clickedBtn;
-        Modal.modal.close();
+    close(btn) {
+        clickedButton = btn;
+        modal.close();
     }
 }
