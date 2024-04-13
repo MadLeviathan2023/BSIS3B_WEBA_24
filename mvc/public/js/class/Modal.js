@@ -33,26 +33,26 @@ export class Modal{
     static get okContainer() {
         return document.querySelector(".modal-btn-ok-container");
     }
-    static clickedResult;
+    static clickedButton;
 
     constructor(){
-        Modal.clickedResult = undefined;
+        Modal.clickedButton = undefined;
 
         Modal.yesNoContainer.style.display = 'none';
         Modal.btnCancel.style.display = 'none';
         Modal.okContainer.style.display = 'none';
 
         Modal.btnYes.onclick = () => {
-            this.close('Yes');
+            this.close(ModalResult.Yes);
         }
         Modal.btnNo.onclick = () => {            
-            this.close('No');
+            this.close(ModalResult.No);
         }
         Modal.btnCancel.onclick = () => {
-            this.close('Cancel');
+            this.close(ModalResult.Cancel);
         }
         Modal.btnOK.onclick = () => {
-            this.close('OK');
+            this.close(ModalResult.OK);
         }    
     }
 
@@ -83,9 +83,9 @@ export class Modal{
 
         return new Promise((resolve, reject) => {
             let timer = setInterval(() => {
-                if (Modal.clickedResult !== undefined){
+                if (Modal.clickedButton !== undefined){
                     clearInterval(timer);
-                    resolve(Modal.clickedResult);
+                    resolve(Modal.clickedButton);
                     reject('Failed! Something went wrong.');
                 }
             }, 500);
@@ -97,7 +97,7 @@ export class Modal{
     }
 
     close(clickedBtn) {
-        Modal.clickedResult = clickedBtn;
+        Modal.clickedButton = clickedBtn;
         Modal.modal.close();
     }
 }

@@ -1,5 +1,5 @@
 import { TypingAnim } from './class/TypingAnim.js';
-import { Modal, ModalButton, ModalResult } from './class/Modal.js';
+import { MessageBox, ModalButton, ModalResult } from './class/Modal.js';
 
 const welcomeMsg = [        
     "To where exceptional flavors and warm hospitality await you.",
@@ -20,8 +20,7 @@ typingAnim.start();
 
 const btn1 = document.getElementById("btn1");
 btn1.onclick = async () => {
-    var modal = await new Modal().show('Message', 'Caption', ModalButton.OK);
-    if (modal == ModalResult.Yes){
+    if (await MessageBox.show('Message', 'Caption', ModalButton.YesNo) == ModalResult.Yes){
         console.log("You clicked Yes!");
     }
     else{
