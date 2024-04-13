@@ -20,8 +20,8 @@ const yesNoContainer = document.querySelector(".modal-btn-yes-no-container");
 const okContainer = document.querySelector(".modal-btn-ok-container");
 var clickedButton;
 
-export class Modal{
-    constructor(){
+export const Modal = {
+    show: async (msg, caption, modalBtn) => {
         clickedButton = undefined;
 
         yesNoContainer.style.display = 'none';
@@ -29,20 +29,18 @@ export class Modal{
         okContainer.style.display = 'none';
 
         btnYes.onclick = () => {
-            this.close(ModalResult.Yes);
+            Modal.close(ModalResult.Yes);
         }
         btnNo.onclick = () => {            
-            this.close(ModalResult.No);
+            Modal.close(ModalResult.No);
         }
         btnCancel.onclick = () => {
-            this.close(ModalResult.Cancel);
+            Modal.close(ModalResult.Cancel);
         }
         btnOK.onclick = () => {
-            this.close(ModalResult.OK);
+            Modal.close(ModalResult.OK);
         }
-    }
 
-    async show(msg, caption, modalBtn){
         const modalMsg = document.getElementById("modal-msg");
         const modalCaption = document.getElementById("modal-caption");              
 
@@ -50,7 +48,7 @@ export class Modal{
         modalMsg.innerHTML = msg;
 
         switch (modalBtn){
-            case ModalButton.Yes:
+            case ModalButton.YesNo:
                 yesNoContainer.style.display = 'block';
                 break;
             case ModalButton.YesNoCancel:
@@ -80,9 +78,8 @@ export class Modal{
         }).catch((err) => {
             return err;
         });
-    }
-
-    close(btn) {
+    },
+    close: (btn) => {
         clickedButton = btn;
         modal.close();
     }

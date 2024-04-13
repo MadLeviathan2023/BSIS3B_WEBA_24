@@ -43,8 +43,8 @@
             </ol>
         </div>
     </div>
-    <div class="open-qr">
-        <button id="btn1">Button 1</button>
+    <div class="open-qr-container">
+        
     </div>
     <script type="module" src="js/home.js"></script>
     <?php
