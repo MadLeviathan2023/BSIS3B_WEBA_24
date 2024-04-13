@@ -81,7 +81,7 @@ export class Modal{
 
         Modal.modal.showModal();
 
-        var resultPromise = new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             let timer = setInterval(() => {
                 if (Modal.clickedResult !== undefined){
                     clearInterval(timer);
@@ -89,13 +89,11 @@ export class Modal{
                     reject('Failed! Something went wrong.');
                 }
             }, 500);
-        });
-        resultPromise.then((result) => {
+        }).then((result) => {
             return result;
         }).catch((err) => {
             return err;
         });
-        return resultPromise;
     }
 
     close(clickedBtn) {

@@ -25,6 +25,6 @@ btn1.onclick = async () => {
         console.log("You clicked Yes!");
     }
     else{
-        console.log("You clicked No!");
+        console.log("You clicked "+ modal +"!");
     }
 }
