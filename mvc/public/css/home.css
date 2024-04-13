@@ -71,6 +71,24 @@ body{
     transition: ease-in-out 250ms;
 }
 
+.intruction-container{
+    background-color: var(--oxford-blue);
+    color: var(--ghost-white);
+}
+
+.instruction-content{
+    margin-inline: 1.5rem;
+    padding: 1.5rem 0px;
+}
+
+.instruction-content h2{
+    margin: 0px;
+}
+
+.instruction-content ol{
+    list-style: decimal;
+}
+
 @keyframes bounce {
     0% {
         bottom: 0;

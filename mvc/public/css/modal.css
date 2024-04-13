@@ -1,0 +1,36 @@
+#modal{
+    min-width: 25vw;
+    max-width: 75vw;
+    background-color: var(--oxford-blue);
+    color: var(--ghost-white);
+}
+
+#modal::backdrop{
+    background: rgba(0, 0, 0, .3);
+}
+
+#modal h3{
+    margin-top: 0px;
+}
+
+.modal-buttons :is(div){
+    display: none;
+}
+
+.modal-buttons :is(button){
+    background-color: var(--oxford-blue);
+    border: var(--ghost-white) 2px solid;
+    color: var(--ghost-white);
+    padding: 2.5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.modal-buttons :is(button):hover{
+    background-color: var(--ghost-white);
+    color: var(--oxford-blue);   
+}
+
+#modal-btn-cancel{
+    display: none;
+}
