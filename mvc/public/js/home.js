@@ -17,3 +17,12 @@ const welcomeMsg = [
 const welcomeMsgElem = document.querySelector('.welcome-msg');
 const typingAnim = new TypingAnim(welcomeMsg, welcomeMsgElem);
 typingAnim.start();
+
+async function someFunction(){
+    var modal = await Modal.Show("Message", "Caption", ModalButton.YesNo);
+    if (modal){
+        alert(modal);
+    }
+}
+
+someFunction();
