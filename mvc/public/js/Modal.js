@@ -53,7 +53,7 @@ document.onkeydown = (e) => {
     }
 }
 
-export const Modal = {
+export const Modal = Object.freeze({
     Show: async (msg, caption, modalBtn) => {
         clickedButton = undefined;        
 
@@ -100,4 +100,4 @@ export const Modal = {
         isShown = false;
         MODAL.close();
     }
-}
+});
