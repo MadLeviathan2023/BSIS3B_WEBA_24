@@ -1,15 +1,15 @@
-export const ModalButton = {
+export const ModalButton = Object.freeze({
     YesNo: 'YesNo',
     YesNoCancel: 'YesNoCancel',
     OK: 'OK',
-}
+});
 
-export const ModalResult = {
+export const ModalResult = Object.freeze({
     Yes: 'Yes',
     No: 'No',
     Cancel: 'Cancel',
     OK: 'OK'
-}
+});
 
 const BTN_CANCEL = document.getElementById("modal-btn-cancel");
 const BTN_YES = document.getElementById("modal-btn-yes");

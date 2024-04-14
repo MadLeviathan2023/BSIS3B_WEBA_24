@@ -3,6 +3,7 @@
     max-width: 75vw;
     background-color: var(--oxford-blue);
     color: var(--ghost-white);
+    user-select: none;
 }
 
 #modal::backdrop{
