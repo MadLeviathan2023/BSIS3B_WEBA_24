@@ -6,7 +6,7 @@
     <?php
         $link = new Link();
         $link->logo();
-        $link->cdnjs();
+        $link->fontAwesome();
         $link->addStyle('root');
         $link->addStyle('nav');
         $link->addStyle('home');
