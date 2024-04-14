@@ -122,9 +122,13 @@ body{
 }
 
 @media screen and (max-width: 767px) {
+    html{
+        scroll-snap-type: y mandatory;
+    }
     .welcome-container{
         display: block;
         min-height: 100vh;
+        scroll-snap-align: start;
     }
     .welcome-text{
         width: 100%;
@@ -135,7 +139,11 @@ body{
         width: 100%;
         min-height: 50vh;
     }
+    .instruction-content h2{
+        margin-top: 1.5rem;
+    }
     .instruction-container, .open-qr-scanner-container{
+        scroll-snap-align: start;
         min-height: 100vh;
     }
 }
