@@ -11,7 +11,7 @@
         $link->addStyle('nav');
         $link->addStyle('home');
         $link->addStyle('modal');
-        $link->addStyle('qr-scanner');
+        $link->addStyle('web-scanner');
     ?>
     <title><?= APP_NAME ?></title>
 </head>
@@ -80,9 +80,10 @@
     <?php
         $modal = new Modal();
         $modal->load();
-        $qrScanner = new QrScanner();
-        $qrScanner->load();
+        $webScanner = new WebScanner();
+        $webScanner->load();
     ?>
+    <script type="module" src="js/WebScanner.js"></script>
     <script type="module" src="js/home.js"></script>
 </body>
 </html>
