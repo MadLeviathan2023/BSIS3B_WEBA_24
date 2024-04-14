@@ -35,3 +35,9 @@
 #modal-btn-cancel{
     display: none;
 }
+
+@media screen and (max-width: 767px) {
+    #modal{
+        width: clamp(50%, 75%, 90%);
+    }
+}
