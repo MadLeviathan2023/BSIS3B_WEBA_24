@@ -1,5 +1,4 @@
 import { TypingAnim } from './TypingAnim.js';
-import { Modal, ModalButton, ModalResult } from './Modal.js';
 
 const welcomeMsg = [        
     "To where exceptional flavors and warm hospitality await you.",

@@ -71,9 +71,10 @@ body{
     transition: ease-in-out 250ms;
 }
 
-.intruction-container{
+.instruction-container{
     background-color: var(--oxford-blue);
     color: var(--ghost-white);
+    min-height: 50vh;
 }
 
 .instruction-content{
@@ -85,8 +86,25 @@ body{
     margin: 0px;
 }
 
-.instruction-content ol{
-    list-style: decimal;
+.open-qr-scanner-container{
+    background-color: var(--bright-pink-crayola);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 100%;
+}
+
+.open-qr-scanner-container a{
+    color: var(--ghost-white);
+    text-decoration: none;
+    text-align: center;
+    font-size: clamp(1rem, 15vw + 1.5rem, 2rem);
+}
+
+.open-qr-scanner-container i{
+    font-size: clamp(12rem, 20vw + 1.5rem, 20rem);
+    display: block;
 }
 
 @keyframes bounce {
@@ -106,15 +124,18 @@ body{
 @media screen and (max-width: 767px) {
     .welcome-container{
         display: block;
-        height: 100vh;
+        min-height: 100vh;
     }
     .welcome-text{
         width: 100%;
-        height: 50vh;
+        min-height: 50vh;
         text-align: center;
     }
     .app-logo{
         width: 100%;
-        height: 50vh;
+        min-height: 50vh;
+    }
+    .instruction-container, .open-qr-scanner-container{
+        min-height: 100vh;
     }
 }

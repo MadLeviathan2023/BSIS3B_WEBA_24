@@ -55,7 +55,7 @@ document.onkeydown = (e) => {
 
 export const Modal = Object.freeze({
     Show: async (msg, caption, modalBtn) => {
-        clickedButton = undefined;        
+        clickedButton = undefined;
 
         BTN_YESNOCANCEL_CONTAINER.style.display = 'none';
         BTN_CANCEL.style.display = 'none';

@@ -30,21 +30,51 @@
             <img src="images/<?= APP_LOGO ?>" alt="Logo">
         </div>
     </div>
-    <div class="intruction-container">
+    <div class="instruction-container">
         <div class="instruction-content">
             <h2>How to order?</h2>
             <ol>
-                <li>Pick a free table and scan the QR Code on it. (You can use the QR Scanner below or your own Scanner App)</li>    
-                <li>Follow the scanned link to get in the Menu list where you can also place your order.</li>
-                <li>Simply choose your orders and add it to your cart.</li>
-                <li>Proceed to checkout in order to confirm or modify your order.</li>
-                <li>Done! You've successfully ordered! Just wait 'til your order arrives.</li>
-                <li>Payment can be done in traditional way or via Gcash or PayPal.</li>
+                <li>
+                    Scan the QR Code:
+                    <ul>
+                        <li>Locate a free table with a QR code displayed.</li>
+                        <li>Use the QR scanner provided below or your preferred scanner app to scan the code.</li>
+                    </ul>
+                </li>
+                <li>
+                    Access the Menu and Place Your Order:
+                    <ul>
+                        <li>After scanning, you will be directed to a link containing our menu.</li>
+                        <li>Browse through the menu and select your desired items, adding them to your cart.</li>
+                    </ul>
+                </li>
+                <li>
+                    Review and Confirm Your Order:
+                    <ul>
+                        <li>Once you have added all your items, proceed to the checkout page.</li>
+                        <li>Review your order and make any necessary modifications.</li>
+                    </ul>
+                </li>
+                <li>
+                    Complete Your Order:
+                    <ul>
+                        <li>After confirming your order, simply wait for it to arrive at your table.</li>
+                    </ul>
+                </li>
+                <li>
+                    Payment Options:
+                    <ul>
+                        <li>You can choose to pay in the traditional way or via digital wallets like Gcash or PayPal.</li>
+                    </ul>
+                </li>
             </ol>
         </div>
     </div>
-    <div class="open-qr-container">
-        
+    <div class="open-qr-scanner-container">
+        <a href="qr-scanner" title="Don't have a QR Scanner App? No Problem! Just click here.">
+            <i class="fa-solid fa-qrcode"></i>
+            QR Scanner
+        </a>
     </div>
     <script type="module" src="js/home.js"></script>
     <?php
