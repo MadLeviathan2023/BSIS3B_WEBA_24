@@ -38,16 +38,16 @@ BTN_OK.onclick = () => {
 
 document.onkeydown = (e) => {
     if (isShown){
-        if ((e.altKey && e.key == 'y' && BTN_YESNOCANCEL_CONTAINER.style.display != 'none') || (e.key == 'Enter' && BTN_YESNOCANCEL_CONTAINER.style.display != 'none')){
+        if ((e.altKey && e.key.toLowerCase() == 'y' && BTN_YESNOCANCEL_CONTAINER.style.display != 'none') || (e.key == 'Enter' && BTN_YESNOCANCEL_CONTAINER.style.display != 'none')){
             BTN_YES.click();
         }
-        else if (e.altKey && e.key == 'n' && BTN_YESNOCANCEL_CONTAINER.style.display != 'none'){
+        else if (e.altKey && e.key.toLowerCase() == 'n' && BTN_YESNOCANCEL_CONTAINER.style.display != 'none'){
             BTN_NO.click();
         }
-        else if (e.altKey && e.key == 'c' && BTN_CANCEL.style.display != 'none'){
+        else if (e.altKey && e.key.toLowerCase() == 'c' && BTN_CANCEL.style.display != 'none'){
             BTN_CANCEL.click();
         }
-        else if ((e.altKey && e.key == 'o' && BTN_OK_CONTAINER.style.display != 'none') || (e.key == 'Enter' && BTN_OK_CONTAINER.style.display != 'none')){
+        else if ((e.altKey && e.key.toLowerCase() == 'o' && BTN_OK_CONTAINER.style.display != 'none') || (e.key == 'Enter' && BTN_OK_CONTAINER.style.display != 'none')){
             BTN_OK.click();
         }
     }
