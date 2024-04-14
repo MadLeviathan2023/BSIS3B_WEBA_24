@@ -11,6 +11,7 @@
         $link->addStyle('nav');
         $link->addStyle('home');
         $link->addStyle('modal');
+        $link->addStyle('qr-scanner');
     ?>
     <title><?= APP_NAME ?></title>
 </head>
@@ -71,15 +72,17 @@
         </div>
     </div>
     <div class="open-qr-scanner-container">
-        <a href="qr-scanner" title="Don't have a QR Scanner App? No Problem! Just click here.">
+        <button id="btnOpenQR" title="Don't have a QR Scanner App? No Problem! Just click here.">
             <i class="fa-solid fa-qrcode"></i>
             QR Scanner
-        </a>
+        </button>
     </div>
-    <script type="module" src="js/home.js"></script>
     <?php
         $modal = new Modal();
         $modal->load();
+        $qrScanner = new QrScanner();
+        $qrScanner->load();
     ?>
+    <script type="module" src="js/home.js"></script>
 </body>
 </html>

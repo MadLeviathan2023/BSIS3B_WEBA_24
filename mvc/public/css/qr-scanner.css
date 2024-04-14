@@ -1,0 +1,21 @@
+.qr-scanner-container{
+    background-color: var(--ghost-white);
+    position: relative;
+}
+
+#btn-close-scanner{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#qr-scanner{
+    width: 90%;
+    background-color: var(--oxford-blue);
+    display: block;
+    margin: auto;
+}

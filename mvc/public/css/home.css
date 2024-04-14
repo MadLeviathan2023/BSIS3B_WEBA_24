@@ -95,11 +95,19 @@ body{
     width: 100%;
 }
 
-.open-qr-scanner-container a{
+#btnOpenQR{
+    background-color: transparent;
+    border: none;
     color: var(--ghost-white);
-    text-decoration: none;
     text-align: center;
     font-size: clamp(1rem, 15vw + 1.5rem, 2rem);
+    cursor: pointer;
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+}
+
+#btnOpenQR:hover{
+    background-color: var(--oxford-blue);
 }
 
 .open-qr-scanner-container i{
