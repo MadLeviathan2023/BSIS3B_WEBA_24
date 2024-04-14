@@ -1,5 +1,11 @@
-.qr-scanner-container{
+#qr-scanner-dialog{
     background-color: var(--ghost-white);
+    width: 80%;
+    padding: 0px;
+    border: none;
+}
+
+.qr-scanner-layout{
     position: relative;
 }
 
@@ -11,10 +17,12 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    z-index: 2;
+    color: white;
 }
 
 #qr-scanner{
-    width: 90%;
+    width: 100%;
     background-color: var(--oxford-blue);
     display: block;
     margin: auto;

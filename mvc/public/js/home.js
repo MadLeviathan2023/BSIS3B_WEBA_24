@@ -1,6 +1,9 @@
+import * as functions from './functions.js';
 import { TypingAnim } from './TypingAnim.js';
+import { Modal, ModalButton, ModalResult } from './Modal.js';
+import { WebScanner } from './WebScanner.js';
 
-const welcomeMsg = [        
+const WELCOME_MSG = [        
     "To where exceptional flavors and warm hospitality await you.",
     "Need assistance? Our Virtual Assistance Chatbot is here to guide you through every step.",
     "Step into the future of dining with our innovative Web-Based Menu Ordering System.",
@@ -13,6 +16,40 @@ const welcomeMsg = [
     "Indulge in culinary delights with just a few clicks!"
 ];
 
-const welcomeMsgElem = document.querySelector('.welcome-msg');
-const typingAnim = new TypingAnim(welcomeMsg, welcomeMsgElem);
-typingAnim.start();
+const WELCOME_MSG_ELEM = document.querySelector('.welcome-msg');
+const TYPING_ANIM = new TypingAnim(WELCOME_MSG, WELCOME_MSG_ELEM);
+var lastScanned;
+TYPING_ANIM.start();
+
+async function showDecodedQR(result){
+    if (result){
+        if (lastScanned != result.data){            
+            lastScanned = result.data;
+            if (functions.isValidURL(result.data)){
+                var msg = await Modal.Show("Would you like to go in the following link?<br><br>URL: <u>" + result.data + "</u>", 'Decoded QR Code', ModalButton.YesNo);
+                if (msg == ModalResult.Yes){
+                    window.location.href = result.data;
+                }
+            }
+            else{
+                var msg = await Modal.Show(result.data, 'Decoded QR Code', ModalButton.OK);
+            }
+            setTimeout(() => {
+                lastScanned = undefined;
+            }, 3000);
+        }
+    }
+}
+
+const BTN_OPEN_QR = document.getElementById('btnOpenQR');
+const WEB_SCANNER = new WebScanner(showDecodedQR, {
+    highlightScanRegion: true,
+    highlightCodeOutline: true,
+    returnDetailedScanResult: true
+});
+
+BTN_OPEN_QR.onclick = () => {
+    WEB_SCANNER.start();
+}
+
+
