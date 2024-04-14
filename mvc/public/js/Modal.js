@@ -18,7 +18,22 @@ const BTN_OK = document.getElementById("modal-btn-ok");
 const MODAL = document.getElementById("modal");
 const BTN_YESNO_CONTAINER = document.querySelector(".modal-btn-yes-no-container");
 const BTN_OK_CONTAINER = document.querySelector(".modal-btn-ok-container");
+const MODAL_MSG = document.getElementById("modal-msg");
+const MODAL_CAPTION = document.getElementById("modal-caption"); 
 var clickedButton;
+
+BTN_YES.onclick = () => {
+    Modal.Close(ModalResult.Yes);
+}
+BTN_NO.onclick = () => {
+    Modal.Close(ModalResult.No);
+}
+BTN_CANCEL.onclick = () => {
+    Modal.Close(ModalResult.Cancel);
+}
+BTN_OK.onclick = () => {
+    Modal.Close(ModalResult.OK);
+}
 
 export const Modal = {
     Show: async (msg, caption, modalBtn) => {
@@ -27,22 +42,6 @@ export const Modal = {
         BTN_YESNO_CONTAINER.style.display = 'none';
         BTN_CANCEL.style.display = 'none';
         BTN_OK_CONTAINER.style.display = 'none';
-
-        BTN_YES.onclick = () => {
-            Modal.Close(ModalResult.Yes);
-        }
-        BTN_NO.onclick = () => {            
-            Modal.Close(ModalResult.No);
-        }
-        BTN_CANCEL.onclick = () => {
-            Modal.Close(ModalResult.Cancel);
-        }
-        BTN_OK.onclick = () => {
-            Modal.Close(ModalResult.OK);
-        }
-
-        const MODAL_MSG = document.getElementById("modal-msg");
-        const MODAL_CAPTION = document.getElementById("modal-caption");              
 
         MODAL_CAPTION.innerHTML = caption;
         MODAL_MSG.innerHTML = msg;
@@ -65,18 +64,13 @@ export const Modal = {
 
         MODAL.showModal();
 
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let timer = setInterval(() => {
                 if (clickedButton !== undefined){
                     clearInterval(timer);
                     resolve(clickedButton);
-                    reject('Failed! Something went wrong.');
                 }
             }, 500);
-        }).then((result) => {
-            return result;
-        }).catch((err) => {
-            return err;
         });
     },
     Close: (btn) => {
