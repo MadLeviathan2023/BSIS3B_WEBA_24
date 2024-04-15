@@ -35,6 +35,12 @@ BTN_CANCEL.onclick = () => {
 BTN_OK.onclick = () => {
     Modal.Close(ModalResult.OK);
 }
+MODAL.onclose = () => {
+    if (clickedButton === undefined){
+        isShown = false;
+        clickedButton = ModalResult.Cancel;
+    }
+}
 
 document.onkeydown = (e) => {
     if (isShown){
@@ -97,7 +103,6 @@ export const Modal = Object.freeze({
     },
     Close: (btn) => {    
         clickedButton = btn;
-        isShown = false;
         MODAL.close();
     }
 });

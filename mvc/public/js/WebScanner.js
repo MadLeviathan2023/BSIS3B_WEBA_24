@@ -6,6 +6,10 @@ const QR_SCANNER_ELEM = document.getElementById('qr-scanner');
 const BTN_CLOSE_SCANNER = document.getElementById('btn-close-scanner');
 var qrScanner;
 
+QR_SCANNER_DIALOG.onclose = () => {
+    qrScanner.stop();
+}
+
 export class WebScanner{
     constructor(result, jsonParam){
         qrScanner = new QrScanner(QR_SCANNER_ELEM, result, jsonParam);
@@ -25,20 +29,19 @@ export class WebScanner{
                         QR_SCANNER_DIALOG.showModal();
                         qrScanner.start();
                     } else {
-                        let msg = await Modal.Show('No camera available!', 'Failed', ModalButton.OK);
+                        Modal.Show('No camera available!', 'Failed', ModalButton.OK);
                     }
                 });
             }).catch(async (err) => {
-                let msg = await Modal.Show(err, 'Failed!', ModalButton.OK);
+                Modal.Show(err, 'Failed!', ModalButton.OK);
             });
         }
         catch (err){
-            let msg = await Modal.Show(err, 'Failed!', ModalButton.OK);
+            Modal.Show(err, 'Failed!', ModalButton.OK);
         }
     }
 
     stop(){
-        qrScanner.stop();
         QR_SCANNER_DIALOG.close();
     }
 }

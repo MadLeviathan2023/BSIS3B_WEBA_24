@@ -18,9 +18,9 @@ const WELCOME_MSG = [
 
 const WELCOME_MSG_ELEM = document.querySelector('.welcome-msg');
 const TYPING_ANIM = new TypingAnim(WELCOME_MSG, WELCOME_MSG_ELEM);
-var lastScanned;
 TYPING_ANIM.start();
 
+var lastScanned;
 async function showDecodedQR(result){
     if (result){
         if (lastScanned != result.data){            
@@ -32,7 +32,7 @@ async function showDecodedQR(result){
                 }
             }
             else{
-                var msg = await Modal.Show(result.data, 'Decoded QR Code', ModalButton.OK);
+                Modal.Show(result.data, 'Decoded QR Code', ModalButton.OK);
             }
             setTimeout(() => {
                 lastScanned = undefined;
@@ -45,7 +45,8 @@ const BTN_OPEN_QR = document.getElementById('btnOpenQR');
 const WEB_SCANNER = new WebScanner(showDecodedQR, {
     highlightScanRegion: true,
     highlightCodeOutline: true,
-    returnDetailedScanResult: true
+    returnDetailedScanResult: true,
+    preferredCamera: 'environment'
 });
 
 BTN_OPEN_QR.onclick = () => {

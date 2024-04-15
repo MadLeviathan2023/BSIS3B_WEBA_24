@@ -1,29 +1,96 @@
 #qr-scanner-dialog{
-    background-color: var(--ghost-white);
-    width: 80%;
-    padding: 0px;
-    border: none;
+    background-color: var(--oxford-blue);
+    width: clamp(50%, 15vw + 1.5rem, 70%);
+    padding: 5px;
+    border: var(--ghost-white) 2px solid;
+    border-radius: 1rem;
+    overflow: hidden;
 }
 
-.qr-scanner-layout{
+#qr-scanner-dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.camera-design-1{
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.camera-design-2{
+    background-color: white;
+    border: var(--oxford-blue) 1px solid;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.camera-design-3{
+    background-color: var(--oxford-blue);
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
     position: relative;
 }
 
-#btn-close-scanner{
+.camera-design-3::before{
+    content: '';
+    background-color: white;
+    width: 7px;
+    height: 7px;
     position: absolute;
-    top: 5px;
-    right: 5px;
-    font-size: 1.5rem;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 2;
-    color: white;
+    top: .5px;
+    left: .5px;
+    border-radius: 100%;
 }
 
 #qr-scanner{
     width: 100%;
-    background-color: var(--oxford-blue);
     display: block;
     margin: auto;
+}
+
+.qr-scanner-layout{
+    overflow: hidden;
+    position: relative;
+    border-radius: .8rem;
+}
+
+.qr-scanner-buttons{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+#btn-close-scanner{
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+#btn-close-scanner:hover{
+    color: var(--bright-pink-crayola);
+}
+
+@media screen and (max-width: 767px) {
+    #qr-scanner-dialog{
+        width: 80%;
+    }
 }
