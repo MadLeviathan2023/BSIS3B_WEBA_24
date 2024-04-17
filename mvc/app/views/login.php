@@ -23,7 +23,7 @@
     ?>
     <div class="login-container">
         <div class="login-form">
-            <form action="<?= PATH ?>/login/auth" method="POST">
+            <form action="<?= ROOT ?>/login/auth" method="POST">
                 <h2>Welcome!</h2>
                 <label id="lblUsername" for="txtUsername">
                     <input type="text" class="textbox" name="txtUsername" id="txtUsername" autocomplete="username" required>
@@ -43,6 +43,6 @@
         $scanner = new WebScanner();
         $scanner->load();
     ?>
-    <script type="module" src="<?= PATH ?>/js/login.js"></script>
+    <script type="module" src="<?= ROOT ?>/js/login.js"></script>
 </body>
 </html>

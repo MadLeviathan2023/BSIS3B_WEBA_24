@@ -19,14 +19,14 @@
                 if (is_array($result) && count($result) === 1){
                     $account = $result[0];
                     if ($account->usertype == 'admin'){
-                        redirect(PATH . '/admin');
+                        redirect(ROOT . '/admin');
                     }
                     else if ($account->usertype == 'user'){
-                        redirect(PATH . '/user');
+                        redirect(ROOT . '/user');
                     }
                 }
                 else{
-                    redirect(PATH . '/login/failed');
+                    redirect(ROOT . '/login/failed');
                 }
             }
         }
