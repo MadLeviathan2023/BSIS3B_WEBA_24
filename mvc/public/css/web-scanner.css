@@ -67,7 +67,7 @@
     border-radius: .8rem;
 }
 
-.qr-scanner-buttons{
+.qr-scanner-footer{
     position: absolute;
     bottom: 0px;
     left: 0px;
@@ -83,10 +83,21 @@
     border: none;
     cursor: pointer;
     color: white;
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    z-index: 1;
 }
 
 #btn-close-scanner:hover{
     color: var(--bright-pink-crayola);
+}
+
+.camera-list-container{
+    color: var(--ghost-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media screen and (max-width: 767px) {
