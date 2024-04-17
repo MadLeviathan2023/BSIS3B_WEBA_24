@@ -135,6 +135,7 @@ body{
         scroll-snap-type: y mandatory;
     }
     .welcome-container{
+        padding-top: 0px;
         display: block;
         min-height: 100vh;
         scroll-snap-align: start;

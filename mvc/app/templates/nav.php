@@ -1,6 +1,6 @@
 <nav>
     <div class="logo">
-        <a href="home"><?= APP_NAME ?></a>
+        <a href="<?= PATH ?>/home"><?= APP_NAME ?></a>
     </div>
     <ul class="options">
         <?php
@@ -11,7 +11,7 @@
             for ($i = 0; $i < count($options); $i++){
                 $isActive = $this->active == $options[1][$i] ? 'active' : '';
                 ?>
-                    <a href="<?= $options[1][$i] ?>">
+                    <a href="<?= PATH . '/' . $options[1][$i] ?>">
                         <li class="<?= $isActive ?>">
                             <?= $options[0][$i] ?>
                         </li>

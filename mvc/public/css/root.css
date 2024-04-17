@@ -12,3 +12,8 @@
     font-family: Poppins;
     src: url(../fonts/Poppins-Regular.ttf);
 }
+
+input::-ms-reveal,
+input::-ms-clear {
+    display: none;
+}

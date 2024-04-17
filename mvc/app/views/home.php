@@ -83,7 +83,7 @@
         $webScanner = new WebScanner();
         $webScanner->load();
     ?>
-    <script type="module" src="js/WebScanner.js"></script>
-    <script type="module" src="js/home.js"></script>
+    <script type="module" src="<?= PATH ?>/js/WebScanner.js"></script>
+    <script type="module" src="<?= PATH ?>/js/home.js"></script>
 </body>
 </html>

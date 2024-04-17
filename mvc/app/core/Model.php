@@ -30,7 +30,7 @@
             $query = trim($query, " && ");      
             $data = array_merge($data, $data_not);
             $result = $this->query($query, $data);
-
+            
             if ($result){
                 return $result;
             }

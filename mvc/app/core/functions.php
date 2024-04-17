@@ -4,3 +4,7 @@
         print_r($stuff);
         echo '</pre>';
     }
+
+    function redirect($location){
+        header("location: $location");
+    }

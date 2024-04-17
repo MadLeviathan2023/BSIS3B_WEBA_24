@@ -1,4 +1,4 @@
-import { Modal, ModalButton, ModalResult } from './Modal.js';
+import { Modal, ModalButton } from './Modal.js';
 import QrScanner from './qr-scanner/node_modules/qr-scanner/qr-scanner.min.js';
 
 const QR_SCANNER_DIALOG = document.getElementById('qr-scanner-dialog');
@@ -19,12 +19,12 @@ export class WebScanner{
         }
     }
 
-    async start(){
+    start(){
         try{
             navigator.mediaDevices.getUserMedia({
                 video: true
             }).then(() => {
-                QrScanner.hasCamera().then(async (hasCamera) => {
+                QrScanner.hasCamera().then((hasCamera) => {
                     if (hasCamera) {
                         QR_SCANNER_DIALOG.showModal();
                         qrScanner.start();
@@ -32,7 +32,7 @@ export class WebScanner{
                         Modal.Show('No camera available!', 'Failed', ModalButton.OK);
                     }
                 });
-            }).catch(async (err) => {
+            }).catch((err) => {
                 Modal.Show(err, 'Failed!', ModalButton.OK);
             });
         }

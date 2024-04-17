@@ -2,14 +2,14 @@
     class Link{
         public function logo(){
             ?>
-                <link rel="icon" href="images/<?= APP_LOGO ?>" type="image/png"/>
+                <link rel="icon" href="<?= PATH ?>/images/<?= APP_LOGO ?>" type="image/png"/>
             <?php
         }
 
         public function addStyle($filename){
             if (!empty($filename)){
                 ?>
-                    <link rel="stylesheet" href="css/<?= strtolower($filename) ?>.css"/>
+                    <link rel="stylesheet" href="<?= PATH ?>/css/<?= strtolower($filename) ?>.css"/>
                 <?php
             }
         }
