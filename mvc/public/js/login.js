@@ -32,6 +32,9 @@ TEXTBOXES.forEach((textbox) => {
     }
 });
 
+TEXTBOXES[0].focus();
+
+
 const TXT_PASSWORD = document.getElementById('txtPassword');
 const BTN_SHOW_HIDE_PASS = document.getElementById('btnShowHidePass');
 const BTN_SHOW_HIDE_PASS_ICON = document.getElementById('btnShowHidePass-Icon');
