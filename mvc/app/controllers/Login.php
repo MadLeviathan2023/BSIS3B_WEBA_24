@@ -5,7 +5,7 @@
         }
 
         public function failed(){
-            $this->view('login');
+            $this->view('login');            
         }
 
         public function auth(){
@@ -19,14 +19,14 @@
                 if (is_array($result) && count($result) === 1){
                     $account = $result[0];
                     if ($account->usertype == 'admin'){
-                        redirect(ROOT . '/admin');
+                        redirect('admin');
                     }
                     else if ($account->usertype == 'user'){
-                        redirect(ROOT . '/user');
+                        redirect('user');
                     }
                 }
                 else{
-                    redirect(ROOT . '/login/failed');
+                    redirect('login/failed');
                 }
             }
         }

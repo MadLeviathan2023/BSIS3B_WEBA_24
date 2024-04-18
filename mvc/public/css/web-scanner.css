@@ -100,6 +100,16 @@
     justify-content: center;
 }
 
+#selCamList{
+    border: none;
+    color: var(--ghost-white);
+    background-color: transparent;
+}
+
+#selCamList option{
+    color: black;
+}
+
 @media screen and (max-width: 767px) {
     #qr-scanner-dialog{
         width: 80%;

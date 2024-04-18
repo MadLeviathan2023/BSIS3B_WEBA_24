@@ -6,5 +6,5 @@
     }
 
     function redirect($location){
-        header("location: $location");
+        header("location: ". ROOT ."/$location");
     }

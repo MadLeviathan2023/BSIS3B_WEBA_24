@@ -6,6 +6,7 @@ const QR_SCANNER_ELEM = document.getElementById('qr-scanner');
 const BTN_CLOSE_SCANNER = document.getElementById('btn-close-scanner');
 const SEL_CAM_LIST = document.getElementById('selCamList');
 var qrScanner;
+var currentCamera;
 
 QR_SCANNER_DIALOG.onclose = () => {
     qrScanner.stop();
@@ -13,6 +14,7 @@ QR_SCANNER_DIALOG.onclose = () => {
 
 SEL_CAM_LIST.onchange = async (e) => {
     await qrScanner.setCamera(e.target.value);
+    currentCamera = e.target.value;
 }
 
 export class WebScanner{
@@ -39,8 +41,11 @@ export class WebScanner{
                                     const OPTION_ELEM = document.createElement('option');
                                     OPTION_ELEM.value = camera.id;
                                     OPTION_ELEM.textContent = camera.label;
+                                    if (currentCamera != undefined && currentCamera == camera.id){
+                                        OPTION_ELEM.setAttribute('selected', '');
+                                    }
                                     SEL_CAM_LIST.append(OPTION_ELEM);
-                                });
+                                });                            
                             });
                         });
                     } else {

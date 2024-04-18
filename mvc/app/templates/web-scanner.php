@@ -1,6 +1,6 @@
 <dialog id="qr-scanner-dialog">
     <div class="qr-scanner-layout"> 
-        <button id="btn-close-scanner">
+        <button type="button" id="btn-close-scanner" title="Close">
             <i class="fa-solid fa-circle-xmark"></i>
         </button>
         <video id="qr-scanner"></video>
@@ -12,8 +12,7 @@
         <div class="qr-scanner-footer">
             <div class="camera-list-container">
                 <i class="fa-solid fa-camera-rotate"></i>
-                <select id="selCamList">
-                </select>
+                <select id="selCamList"></select>
             </div>
         </div>
     </div>
