@@ -39,7 +39,7 @@
                 <?php } ?>
             <?php } else { ?>
                 <tr>
-                    <td colspan="5">No Result</td>
+                    <td colspan="5" class="no-result">No Result</td>
                 </tr>
             <?php } ?>
         </table>
