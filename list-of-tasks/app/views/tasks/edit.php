@@ -24,7 +24,7 @@
         </select>
         <label for="">Due Date: </label><input type="datetime-local" name="task_due" value="<?= $task->task_due ?>">
         <input type="hidden" name="id" value="<?= $task->id ?>">
-        <button type="submit" class="btnGreen"><i class="fa-solid fa-pencil"></i> Edit</button>
+        <button type="submit" class="btnGreen"><i class="fa-solid fa-pencil"></i> Update</button>
     </form>
 </body>
 </html>
