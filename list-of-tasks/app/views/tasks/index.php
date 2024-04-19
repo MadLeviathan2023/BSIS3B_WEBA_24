@@ -6,6 +6,7 @@
     <title><?= APP_NAME ?></title>
 </head>
 <body>
-    <h1>Home Page</h1>
+    <h1>Tasks</h1>
+    <?php show($tasks); ?>
 </body>
 </html>
