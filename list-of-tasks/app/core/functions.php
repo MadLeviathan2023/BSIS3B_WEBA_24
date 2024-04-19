@@ -8,3 +8,8 @@
     function redirect($location){
         header("location: ". ROOT ."/$location");
     }
+
+    function formattedDateTime($datetime){
+        $date = new DateTime($datetime);
+        return $date->format('M. d, Y (h:i A)');
+    }
