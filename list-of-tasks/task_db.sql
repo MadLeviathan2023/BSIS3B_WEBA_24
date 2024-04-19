@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2024 at 06:57 PM
+-- Generation Time: Apr 19, 2024 at 08:33 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -67,7 +67,8 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `task_name`, `task_description`, `task_status`, `task_due`) VALUES
-(5, 'Coding', 'Just Code.', 'To Do', '2024-04-20 08:00:00');
+(7, 'Coding', 'Just Code', 'To Do', '2024-04-20 08:00:00'),
+(8, 'Sleep', 'Just Sleep', 'To Do', '2024-04-20 20:00:00');
 
 --
 -- Indexes for dumped tables
@@ -99,7 +100,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
