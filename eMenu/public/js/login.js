@@ -71,17 +71,17 @@ function loginWithQR(result){
             const XHR = new XMLHttpRequest();
             XHR.onreadystatechange = () => {
                 if (XHR.readyState == 4 && XHR.status == 200){
-                    var resultJSON = JSON.parse(XHR.responseText);
-                    if (resultJSON.status == 'success'){
-                        if (resultJSON.usertype == 'admin'){
+                    var logResult = JSON.parse(XHR.responseText);
+                    if (logResult.status == 'success'){
+                        if (logResult.usertype == 'admin'){
                             window.location.href = global.ROOT + '/admin';
                         }
-                        else if (resultJSON.usertype == 'user'){
+                        else if (logResult.usertype == 'user'){
                             window.location.href = global.ROOT + '/user';
                         }
                     }
                     else{
-                        Modal.Show(resultJSON.msg, resultJSON.caption, ModalButton.OK);
+                        Modal.Show(logResult.msg, logResult.caption, ModalButton.OK);
                     }
                 }
                 else if (XHR.readyState == 4 && XHR.status != 200){

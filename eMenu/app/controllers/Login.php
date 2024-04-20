@@ -39,7 +39,7 @@
                     $_POST['user_qr'] = md5($_POST['user_qr']);
                     $result = $user->where($_POST);
                     if (is_array($result) && count($result) === 1){
-                        //Set Session code is needs here(I still haven't done it)
+                        //Set Session code here(Not done yet)
 
                         $authResult = array(
                             'status' => 'success',
@@ -63,7 +63,12 @@
                 );
             }
             finally{
-                echo json_encode($authResult);
+                if (is_array($authResult)){
+                    echo json_encode($authResult);
+                }
+                else{
+                    redirect('login');
+                }
             }
         }
     }
