@@ -1,4 +1,4 @@
-import * as functions from './functions.js';
+import * as global from './global.js';
 import { TypingAnim } from './TypingAnim.js';
 import { Modal, ModalButton, ModalResult } from './Modal.js';
 import { WebScanner } from './WebScanner.js';
@@ -25,7 +25,7 @@ async function showDecodedQR(result){
     if (result){
         if (lastScanned != result.data){            
             lastScanned = result.data;
-            if (functions.isValidURL(result.data)){
+            if (global.isValidURL(result.data)){
                 var msg = await Modal.Show("Would you like to go in the following link?<br><br>URL: <u>" + result.data + "</u>", 'Decoded QR Code', ModalButton.YesNo);
                 if (msg == ModalResult.Yes){
                     window.location.href = result.data;

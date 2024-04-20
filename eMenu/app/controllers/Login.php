@@ -30,4 +30,40 @@
                 }
             }
         }
+
+        public function auth_qr(){  
+            $authResult;
+            try{
+                if (isset($_POST['user_qr'])){
+                    $user = new User();
+                    $_POST['user_qr'] = md5($_POST['user_qr']);
+                    $result = $user->where($_POST);
+                    if (is_array($result) && count($result) === 1){
+                        //Set Session code is needs here(I still haven't done it)
+
+                        $authResult = array(
+                            'status' => 'success',
+                            'usertype' => $result[0]->usertype
+                        );
+                    }
+                    else{
+                        $authResult = array(
+                            'msg' => 'Invalid QR Code!',
+                            'caption' => 'Failed!',
+                            'status' => 'failed'
+                        );
+                    }
+                }
+            }
+            catch(Exception $ex){
+                $authResult = array(
+                    'msg' => $ex->getMessage(),
+                    'caption', 'Error!',
+                    'status', 'failed'
+                );
+            }
+            finally{
+                echo json_encode($authResult);
+            }
+        }
     }

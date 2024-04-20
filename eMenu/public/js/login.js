@@ -1,5 +1,6 @@
 import { Modal, ModalButton, ModalResult } from './Modal.js';
 import { WebScanner } from './WebScanner.js';
+import * as global from './global.js';
 
 const TEXTBOXES = document.querySelectorAll('.textbox');
 
@@ -32,6 +33,7 @@ TEXTBOXES.forEach((textbox) => {
     }
 });
 
+TEXTBOXES[1].focus();
 TEXTBOXES[0].focus();
 
 
@@ -60,8 +62,42 @@ BTN_SHOW_HIDE_PASS.onclick = () => {
 
 const BTN_OPEN_SCANNER = document.getElementById('btnOpenScanner');
 
-async function loginWithQR(result){
-    
+var lastScanned;
+function loginWithQR(result){
+    if (result){
+        if (lastScanned != result.data){
+            lastScanned = result.data;
+            var data = 'user_qr=' + result.data;
+            const XHR = new XMLHttpRequest();
+            XHR.onreadystatechange = () => {
+                if (XHR.readyState == 4 && XHR.status == 200){
+                    var resultJSON = JSON.parse(XHR.responseText);
+                    if (resultJSON.status == 'success'){
+                        if (resultJSON.usertype == 'admin'){
+                            window.location.href = global.ROOT + '/admin';
+                        }
+                        else if (resultJSON.usertype == 'user'){
+                            window.location.href = global.ROOT + '/user';
+                        }
+                    }
+                    else{
+                        Modal.Show(resultJSON.msg, resultJSON.caption, ModalButton.OK);
+                    }
+                }
+                else if (XHR.readyState == 4 && XHR.status != 200){
+                    Modal.Show('Something went wrong.', 'Error', ModalButton.OK);
+                }
+            }
+
+            XHR.open('POST', global.ROOT + '/login/auth_qr', true);
+            XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            XHR.send(data);
+
+            setTimeout(() => {
+                lastScanned = undefined;
+            }, 3000);
+        }
+    }
 }
 
 const WEB_SCANNER = new WebScanner(loginWithQR, {
