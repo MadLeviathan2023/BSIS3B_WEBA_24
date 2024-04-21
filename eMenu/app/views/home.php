@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="app-logo">
-            <img src="images/<?= APP_LOGO ?>" alt="Logo">
+            <img src="<?= ROOT ?>/images/<?= APP_LOGO ?>" alt="Logo">
         </div>
     </div>
     <div class="instruction-container">

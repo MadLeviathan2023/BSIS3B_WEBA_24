@@ -23,16 +23,20 @@ TYPING_ANIM.start();
 var lastScanned;
 async function showDecodedQR(result){
     if (result){
-        if (lastScanned != result.data){            
-            lastScanned = result.data;
-            if (global.isValidURL(result.data)){
-                var msg = await Modal.Show("Would you like to go in the following link?<br><br>URL: <u>" + result.data + "</u>", 'Decoded QR Code', ModalButton.YesNo);
+        var scannedQR = result.data;
+        if (lastScanned != scannedQR){
+            lastScanned = scannedQR;
+            if (global.isValidURL(scannedQR) && scannedQR.startsWith(global.ROOT)){
+                window.location.href = scannedQR;
+            }
+            else if (global.isValidURL(scannedQR)){
+                var msg = await Modal.Show("Would you like to go in the following link?<br><br>URL: <u>" + scannedQR + "</u>", 'Decoded QR Code', ModalButton.YesNo);
                 if (msg == ModalResult.Yes){
-                    window.location.href = result.data;
+                    window.location.href = scannedQR;
                 }
             }
             else{
-                Modal.Show(result.data, 'Decoded QR Code', ModalButton.OK);
+                Modal.Show(scannedQR, 'Decoded QR Code', ModalButton.OK);
             }
             setTimeout(() => {
                 lastScanned = undefined;

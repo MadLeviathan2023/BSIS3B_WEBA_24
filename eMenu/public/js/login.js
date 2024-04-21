@@ -62,30 +62,34 @@ BTN_SHOW_HIDE_PASS.onclick = () => {
 
 const BTN_OPEN_SCANNER = document.getElementById('btnOpenScanner');
 
+
 var lastScanned;
 function loginWithQR(result){
     if (result){
-        if (lastScanned != result.data){
-            lastScanned = result.data;
-            var data = 'user_qr=' + result.data;
+        var scannedQR = result.data;
+        if (lastScanned != scannedQR){
+            lastScanned = scannedQR;
+            var data = 'user_qr=' + scannedQR;
             const XHR = new XMLHttpRequest();
             XHR.onreadystatechange = () => {
-                if (XHR.readyState == 4 && XHR.status == 200){
-                    var logResult = JSON.parse(XHR.responseText);
-                    if (logResult.status == 'success'){
-                        if (logResult.usertype == 'admin'){
-                            window.location.href = global.ROOT + '/admin';
+                if (XHR.readyState == 4){
+                    if (XHR.status == 200){
+                        var logResult = JSON.parse(XHR.responseText);
+                        if (logResult.status == 'success'){
+                            if (logResult.usertype == 'admin'){
+                                window.location.href = global.ROOT + '/admin';
+                            }
+                            else if (logResult.usertype == 'user'){
+                                window.location.href = global.ROOT + '/user';
+                            }
                         }
-                        else if (logResult.usertype == 'user'){
-                            window.location.href = global.ROOT + '/user';
+                        else{
+                            Modal.Show(logResult.msg, logResult.caption, ModalButton.OK);
                         }
                     }
                     else{
-                        Modal.Show(logResult.msg, logResult.caption, ModalButton.OK);
+                        Modal.Show('Status code: ' + XHR.status, 'Error', ModalButton.OK);
                     }
-                }
-                else if (XHR.readyState == 4 && XHR.status != 200){
-                    Modal.Show('Something went wrong.', 'Error', ModalButton.OK);
                 }
             }
 
