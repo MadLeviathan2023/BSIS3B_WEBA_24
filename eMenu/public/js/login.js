@@ -60,9 +60,6 @@ BTN_SHOW_HIDE_PASS.onclick = () => {
 }
 
 
-const BTN_OPEN_SCANNER = document.getElementById('btnOpenScanner');
-
-
 var lastScanned;
 function loginWithQR(result){
     if (result){
@@ -111,6 +108,7 @@ const WEB_SCANNER = new WebScanner(loginWithQR, {
     preferredCamera: 'environment'
 });
 
+const BTN_OPEN_SCANNER = document.getElementById('btnOpenScanner');
 BTN_OPEN_SCANNER.onclick = () => {
     WEB_SCANNER.start();
 }
