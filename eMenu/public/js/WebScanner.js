@@ -31,7 +31,7 @@ export class WebScanner{
             navigator.mediaDevices.getUserMedia({
                 video: true
             }).then(() => {
-                SEL_CAM_LIST.innerHTML = '';
+                SEL_CAM_LIST.replaceChildren();
                 QrScanner.hasCamera().then((hasCamera) => {
                     if (hasCamera) {
                         QR_SCANNER_DIALOG.showModal();
@@ -45,7 +45,10 @@ export class WebScanner{
                                         OPTION_ELEM.setAttribute('selected', '');
                                     }
                                     SEL_CAM_LIST.append(OPTION_ELEM);
-                                });                            
+                                });       
+                                if (currentCamera == undefined){
+                                    qrScanner.setCamera(cameras[0].id); 
+                                }
                             });
                         });
                     } else {
