@@ -18,7 +18,7 @@
 <body>
     <?php
         $nav = new Nav();
-        $nav->setActive('login');
+        $nav->setActive('log in');
         $nav->load();
     ?>
     <div class="login-container">

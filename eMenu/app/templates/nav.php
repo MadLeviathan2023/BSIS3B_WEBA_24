@@ -4,16 +4,14 @@
     </div>
     <ul class="options">
         <?php
-            $options = array(
-                array('Home', 'Log In'),
-                array('home', 'login')
-            );
+            $options = array('Home', 'Log In');
+
             for ($i = 0; $i < count($options); $i++){
-                $isActive = $this->active == $options[1][$i] ? 'active' : '';
+                $isActive = strtolower($this->active) == strtolower($options[$i]) ? 'class="active"' : '';
                 ?>
-                    <a href="<?= ROOT . '/' . $options[1][$i] ?>">
-                        <li class="<?= $isActive ?>">
-                            <?= $options[0][$i] ?>
+                    <a href="<?= ROOT . '/' . strtolower(str_replace(' ', '',$options[$i])) ?>">
+                        <li <?= $isActive ?>>
+                            <?= $options[$i] ?>
                         </li>
                     </a>
                 <?php

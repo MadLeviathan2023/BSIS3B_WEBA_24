@@ -5,7 +5,7 @@
         }
 
         public function failed(){
-            $this->view('login');            
+            $this->view('login');
         }
 
         public function auth(){
