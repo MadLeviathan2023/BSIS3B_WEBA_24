@@ -14,7 +14,7 @@
         public function table($tbl_code = ''){
             session_start();
 
-            if(isset($_SESSION['table_code'])){
+            if(isset($_SESSION['table_code']) && empty($tbl_code)){
                 $data['table_code'] = $_SESSION['table_code'];
             }
             else{
@@ -22,11 +22,15 @@
             }
 
             $table = new Table();
-            $result = $table->where($data);
-            if (is_array($result) && count($result) == 1){
-                $_SESSION['table_code'] = $result[0]->table_code;
-                $this->view('menu/index', [
-                    'table' => $result[0]
+            $tblResult = $table->where($data);
+            $product = new Product();
+            $prdctResult = $product->findAll();
+
+            if (is_array($tblResult) && count($tblResult) == 1){
+                $_SESSION['table_code'] = $tblResult[0]->table_code;
+                $this->view('menu', [
+                    'table' => $tblResult[0],
+                    'product' => $prdctResult
                 ]);
             }
             else{
@@ -36,10 +40,21 @@
 
         public function search(){
             session_start();
-
-            if (isset($_SESSION['table_code'])){
+            
+            if (isset($_SESSION['table_code'])){            
                 if (count($_POST) > 0){
-                    
+                    $data['table_code'] = $_SESSION['table_code'];
+                    $table = new Table();
+                    $tblResult = $table->where($data);
+                    $product = new Product();
+                    $prdctResult = $product->search($_POST['selCategory'], $_POST['txtSearch']);
+                    $this->view('menu', [
+                        'table' => $tblResult[0],
+                        'product' => $prdctResult
+                    ]);
+                }
+                else{
+                    redirect('menu/table');
                 }
             }
             else{

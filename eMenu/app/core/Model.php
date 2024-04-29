@@ -37,6 +37,24 @@
             return false;
         }
 
+        public function like($data, $string){
+            $columns = $data;
+            $query = "SELECT * FROM $this->table WHERE CONCAT(";
+
+            foreach ($columns as $column){
+                $query .= $column . ", ";
+            }
+
+            $query = trim($query, ", ");
+            $query .= ") LIKE '%" . $string . "%'";
+            $result = $this->query($query);
+
+            if ($result){
+                return $result;
+            }
+            return false;
+        }
+
         public function insert($data){
             $columns = implode(', ', array_keys($data));
             $values = implode(', :', array_keys($data));

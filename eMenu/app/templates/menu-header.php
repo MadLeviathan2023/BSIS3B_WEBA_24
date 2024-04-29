@@ -8,13 +8,13 @@
                     $category = new Category();
                     $result = $category->findAll();
                     foreach ($result as $row){ ?>
-                        <option value="<?= $row->category_id ?>"><?= $row->category_name ?></option>
+                        <option value="<?= $row->category_id ?>" <?= $this->category == $row->category_id ? 'selected' : '' ?>><?= $row->category_name ?></option>
                     <?php }
                 ?>
             </select>
         </div>
         <div class="search-div">
-            <input type="text" placeholder="Search..." id="txtSearch">
+            <input type="text" placeholder="Search..." value="<?= !empty($this->searchval) ? $this->searchval : ''  ?>" name="txtSearch" id="txtSearch">
             <button type="submit" id="btnSubmit" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </form>

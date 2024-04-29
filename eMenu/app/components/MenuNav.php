@@ -7,8 +7,4 @@
         public function setActive($newActive){
             $this->active = $newActive;
         }
-
-        public function setTableName($tbl_name){
-            $this->table_name = $tbl_name;
-        }
     }

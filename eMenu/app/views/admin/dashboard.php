@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php
         $link = new Link();
-        $link->fontAwesome();
         $link->logo();
+        $link->googleFonts();
         $link->addStyle('root');
-        $link->addStyle('menu-nav');
-        $link->addStyle('menu-header');
-        $link->addStyle('menu');
+        $link->addStyle('admin-sidebar');
+        $link->addStyle('admin');
     ?>
     <title><?= APP_NAME ?></title>
 </head>
 <body>
     <?php
-        $nav = new MenuNav();
-        $nav->setTableName($table->table_name);
-        $nav->load();
-        $header = new MenuHeader();
-        $header->load();
-    ?>    
+        $sidebar = new AdminSideBar();
+        $sidebar->load();
+    ?>
+    <main>
+        <section>
+            <h1><?= $sidebar->loadButton() ?>Dashboard</h1>
+        </section>
+    </main>
 </body>
 </html>

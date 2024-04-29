@@ -2,3 +2,30 @@ body{
     background-color: var(--ghost-white);
     margin: 0px;
 }
+
+main:nth-child(0){
+    user-select: none;
+}
+
+section{
+    margin-inline: .5rem;
+}
+
+.right-arrow{
+    color: var(--ghost-white);
+    display: inline-block;
+    background-color: var(--oxford-blue);
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
+    padding: .15rem 2rem .15rem .5rem;
+    user-select: none;
+}
+
+.right-chevron{
+    color: var(--ghost-white);
+    display: inline-block;
+    background-color: var(--oxford-blue);
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+    padding: .15rem 1.5rem .15rem 1.8rem;
+    margin-left: -1.25rem;
+    user-select: none;
+}

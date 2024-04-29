@@ -1,0 +1,41 @@
+body{
+    margin: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--ghost-white);
+    color: var(--oxford-blue);
+}
+
+main{
+    height: 100vh;
+    flex-grow: 1;
+
+}
+
+section{
+    margin-inline: 1rem;
+    overflow-y: scroll;
+}
+
+section:nth-child(1){
+    width: 100%;
+    margin: 0px;
+    overflow-y: unset;
+    background-color: var(--oxford-blue);
+}
+
+section:nth-child(1) h1{
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--ghost-white);
+    height: 50px;
+    padding-left: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+    section:nth-child(1) h1{
+        padding: 0px;
+    }
+}
