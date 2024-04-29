@@ -1,31 +1,63 @@
 <?php
     class Admin extends Controller{
         public function index(){
-            $this->view('admin/dashboard');
+            $this->isProceed('dashboard');
         }
 
         public function profile(){
-            $this->view('admin/profile');
+            $this->isProceed('profile');
         }
         
         public function accounts(){
-            $this->view('admin/accounts');
+            $user = new User();
+            if (isset($_GET['search'])){
+                $col = array(
+                    0 => "first_name",
+                    1 => "' '",
+                    2 => "middle_name",
+                    3 => "' '",
+                    4 => "last_name",
+                    5 => "', '",
+                    6 => "first_name",
+                    7 => "' '",
+                    8 => "last_name",
+                    9 => "username",
+                    10 => "usertype"
+                );
+                $result = $user->like($col, $_GET['search']);
+            }
+            else{
+                $result = $user->findAll();
+            }
+            $this->isProceed('accounts', [
+                'search' => isset($_GET['search']) ? $_GET['search'] : '',
+                'users' => $result
+            ]);
         }
 
         public function products(){
-            $this->view('admin/products');
+            $this->isProceed('products');
         }
 
         public function categories(){
-            $this->view('admin/categories');
+            $this->isProceed('categories');
         }
 
         public function reports(){
-            $this->view('admin/reports');
+            $this->isProceed('reports');
         }
 
         public function logout(){
             unsetLogInSession();
             redirect('login');            
-        }        
+        }
+        
+        private function isProceed($page, $data = []){
+            if (isLoggedIn() && isAdmin()){
+                $this->view('admin/' . $page, $data);
+            }
+            else{
+                redirect('login');  
+            }
+        }
     }

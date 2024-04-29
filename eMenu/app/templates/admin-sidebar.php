@@ -18,13 +18,16 @@
                     }
                 ?>
             </ul>
-            <ul>
-                <a href="<?= ROOT ?>/admin/logout">
-                    <li>
-                        <span class="material-symbols-outlined">logout</span>&nbsp;Log Out
-                    </li>
-                </a>
-            </ul>
+            <div>
+                <hr>
+                <ul>
+                    <a href="<?= ROOT ?>/admin/logout">
+                        <li>
+                            <span class="material-symbols-outlined">logout</span>&nbsp;Log Out
+                        </li>
+                    </a>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
