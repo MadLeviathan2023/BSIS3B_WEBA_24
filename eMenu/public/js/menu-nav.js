@@ -18,7 +18,7 @@ window.addEventListener('resize', () => {
         toggleDisplay(OPTIONS);
     }
     else{
-        OPTIONS.style.display = 'flex';
+        OPTIONS.removeAttribute('style');
     }
 });
 

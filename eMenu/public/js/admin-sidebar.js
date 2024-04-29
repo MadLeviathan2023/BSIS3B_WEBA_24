@@ -1,10 +1,16 @@
 const SIDEBAR_CONTAINER = document.querySelector('.sidebar-container');
+const SIDEBAR_BTN = document.getElementById('sidebar-btn');
 const SIDEBAR = document.querySelector('.sidebar');
 const MOBILE_VW = 767;
 
 var vw = window.visualViewport.width;
 window.onresize = () => {
     vw = window.visualViewport.width;
+    if (vw > MOBILE_VW){
+        SIDEBAR_CONTAINER.removeAttribute('style');
+        SIDEBAR.removeAttribute('style');
+        SIDEBAR_BTN.removeAttribute('style');
+    }
 }
 
 document.body.addEventListener('click', (e) => {
@@ -12,7 +18,7 @@ document.body.addEventListener('click', (e) => {
     if (TARGET === SIDEBAR_CONTAINER && vw < MOBILE_VW) {
         hideSidebar();
     } 
-    else if (TARGET.id === 'sidebar-btn') {
+    else if (TARGET === SIDEBAR_BTN) {
         showSidebar();
     }
 });

@@ -28,4 +28,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="<?= ROOT ?>/js/admin-sidebar.js"></script>

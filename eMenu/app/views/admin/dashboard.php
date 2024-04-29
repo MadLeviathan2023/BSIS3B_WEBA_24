@@ -23,5 +23,6 @@
             <h1><?= $sidebar->loadButton() ?>Dashboard</h1>
         </section>
     </main>
+    <script type="text/javascript" src="<?= ROOT ?>/js/admin-sidebar.js"></script>
 </body>
 </html>

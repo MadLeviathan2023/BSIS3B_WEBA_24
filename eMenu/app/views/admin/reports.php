@@ -24,5 +24,6 @@
             <h1><?= $sidebar->loadButton() ?>Reports</h1>
         </section>
     </main>
+    <script type="text/javascript" src="<?= ROOT ?>/js/admin-sidebar.js"></script>
 </body>
 </html>
