@@ -15,7 +15,8 @@ if (vw < MOBILE_VW){
 window.addEventListener('resize', () => {
     vw = window.visualViewport.width;
     if (vw < MOBILE_VW){
-        toggleDisplay(OPTIONS);
+        BTN_MENU.classList.remove('active')
+        OPTIONS.style.display = 'none';
     }
     else{
         OPTIONS.removeAttribute('style');
