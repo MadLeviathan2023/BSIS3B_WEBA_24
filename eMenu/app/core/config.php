@@ -6,3 +6,7 @@
     define('DB_NAME', 'e_menu');
     define('DB_USER', 'root');
     define('DB_PASS', '');
+    define('SMTP_HOST', 'smtp.gmail.com');
+    define('MAIL_USERNAME', 'leonardpaulo.sanchez.3');
+    define('MAIL_PASS', 'ceth rakq vbrc jqcw');
+    define('MAILER_NAME', 'eMenu');
