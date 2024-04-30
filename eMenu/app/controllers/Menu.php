@@ -42,12 +42,12 @@
             session_start();
             
             if (isset($_SESSION['table_code'])){            
-                if (count($_POST) > 0){
+                if (count($_GET) > 0){
                     $data['table_code'] = $_SESSION['table_code'];
                     $table = new Table();
                     $tblResult = $table->where($data);
                     $product = new Product();
-                    $prdctResult = $product->search($_POST['selCategory'], $_POST['txtSearch']);
+                    $prdctResult = $product->search($_GET['category'], $_GET['search']);
                     $this->view('menu', [
                         'table' => $tblResult[0],
                         'product' => $prdctResult

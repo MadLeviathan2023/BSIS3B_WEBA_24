@@ -35,6 +35,40 @@
             ]);
         }
 
+        public function add_acc(){
+            $this->isProceed('add_acc');
+        }
+
+        public function insert_acc(){
+            if (count($_POST) > 0){
+                $user = new User();
+                $user->update($_POST['user_id'], $_POST, 'user_id');
+            }
+            redirect('admin/accounts');
+        }
+
+        public function edit_acc($id = ''){
+            $data['user_id'] = $id;
+            $user = new User();
+            $result = $user->where($data);
+            if (is_array($result) && count($result) == 1){
+                $this->isProceed('edit_acc', [
+                    'user' => $result[0]
+                ]);
+            }
+            else{
+                redirect('admin/accounts');
+            }
+        }
+
+        public function update_acc(){
+            if (count($_POST) > 0){
+                $user = new User();
+                $user->update($_POST['user_id'], $_POST, 'user_id');
+            }
+            redirect('admin/accounts');
+        }
+
         public function products(){
             $this->isProceed('products');
         }

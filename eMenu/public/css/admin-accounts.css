@@ -1,8 +1,13 @@
 .header-container{
     display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 1rem;
+}
+
+.header-container h3{
+    display: inline;
 }
 
 .header-container a{
@@ -43,14 +48,38 @@
     position: absolute;
     top: 50%;
     right: -.25rem;
-    transform: translateY(calc(50% - 1.7rem));
+    transform: translateY(calc(50% - 1.725rem));
     font-size: 1rem;
     height: 25px;
+}
+
+.action-buttons{
+    display: grid;
+    gap: .5rem;
+    grid-template-columns: auto auto;
+}
+
+.action-buttons a, a.anchor-btn{
+    color: var(--ghost-white);
+    background-color: var(--teal);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    text-decoration: none;
+    padding-inline: .5rem;
+}
+
+.action-buttons a:active, a.anchor-btn:active{
+    background-color: var(--bright-pink-crayola);
 }
 
 @media screen and (max-width: 767px) {
     .header-container{
         display: block;
+    }
+    .flex{
+        display: flex;
     }
     .header-container form{
         width: 100%;

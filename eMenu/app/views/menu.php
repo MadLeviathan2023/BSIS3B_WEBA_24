@@ -20,11 +20,11 @@
         $nav = new MenuNav();
         $nav->load();
         $header = new MenuHeader();
-        if (isset($_POST['selCategory'])){
-            $header->setCategory($_POST['selCategory']);
+        if (isset($_GET['category'])){
+            $header->setCategory($_GET['category']);
         }
-        if (isset($_POST['txtSearch'])){
-            $header->setSearchVal($_POST['txtSearch']);
+        if (isset($_GET['search'])){
+            $header->setSearchVal($_GET['search']);
         }
         $header->load();
     ?>

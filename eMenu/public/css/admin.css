@@ -61,11 +61,50 @@ tr:nth-child(even){
     background-color: rgb(209, 211, 232);
 }
 
+.post-form{
+    width: calc(100vw - 30vw);
+    display: grid;
+}
+
+.post-form label{
+    display: grid;
+    grid-template-columns: 8rem auto;
+    margin-block: .25rem;
+    margin-bottom: .5rem;
+}
+
+.post-form label, .post-form input, .post-form select{
+    font-family: Poppins;
+    width: 100%;
+}
+
+.form-btn{
+    background-color: var(--teal);
+    font-size: 1rem;
+    border: none;
+    color: var(--ghost-white);
+    font-family: Poppins;
+    padding: .25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-btn:active{
+    background-color: var(--bright-pink-crayola);
+}
+
 @media screen and (max-width: 767px) {
     section:nth-child(1) h1{
         padding: 0px;
     }
     .table-container{
         width: calc(100vw - 2rem);
+    }
+    .post-form{
+        width: 100%;
+    }
+    .post-form label{
+        display: block;
     }
 }

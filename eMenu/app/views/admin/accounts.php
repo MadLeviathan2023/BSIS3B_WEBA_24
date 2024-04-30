@@ -32,14 +32,14 @@
                         <input type="text" placeholder="Search..." id="txtSearch" name="search" value="<?= $search ?>">
                         <button type="submit" id="search-icon" class="material-symbols-outlined">search</button>
                     </form>
-                    <a href="<?= ROOT ?>/admin/add_account">
+                    <a href="<?= ROOT ?>/admin/add_acc">
                         <span class="material-symbols-outlined">person_add</span>&nbsp;Add Account
                     </a>
                 </div>
                 <div class="table-container">
                     <table>
                         <tr>
-                            <th>Fist Name</th>
+                            <th>First Name</th>
                             <th>Middle Name</th>
                             <th>Last Name</th>
                             <th>Username</th>
@@ -55,7 +55,10 @@
                                     <td><?= $user->username ?></td>
                                     <td><?= $user->usertype ?></td>
                                     <td>
-                                        
+                                        <div class="action-buttons">
+                                            <a href="<?= ROOT ?>/admin/edit_acc/<?= $user->user_id ?>"><span class="material-symbols-outlined">edit</span>&nbsp;Edit</a>
+                                            <a href="<?= ROOT ?>/admin/delete_acc/<?= $user->user_id ?>"><span class="material-symbols-outlined">delete</span>&nbsp;Delete</a>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php } ?>
