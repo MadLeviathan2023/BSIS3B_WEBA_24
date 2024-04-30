@@ -1,4 +1,9 @@
 <?php
+    use BaconQrCode\Renderer\ImageRenderer;
+    use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+    use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+    use BaconQrCode\Writer;
+
     class Admin extends Controller{
         public function index(){
             $this->isProceed('dashboard');
@@ -40,11 +45,12 @@
         }
 
         public function insert_acc(){
-            if (count($_POST) > 0){
-                $user = new User();
-                $user->update($_POST['user_id'], $_POST, 'user_id');
-            }
-            redirect('admin/accounts');
+            $renderer = new ImageRenderer(
+                new RendererStyle(400),
+                new ImagickImageBackEnd()
+            );
+            $writer = new Writer($renderer);
+            $writer->writeFile('Hello World!', 'qrcode.png');
         }
 
         public function edit_acc($id = ''){

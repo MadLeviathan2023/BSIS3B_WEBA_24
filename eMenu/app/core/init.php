@@ -7,8 +7,11 @@
     require 'Database.php';
     require 'Link.php';
     require 'Model.php';
+    require 'packages/bacon-qr-code/vendor/autoload.php';
+    require 'packages/php-mailer/vendor/autoload.php';
 
     spl_autoload_register(function ($class_name){
+        
         $component_file = '../app/components/' . $class_name . '.php';
         $model_file = '../app/models/' . $class_name . '.php';
     
