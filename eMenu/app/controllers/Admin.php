@@ -40,7 +40,34 @@
         }
 
         public function insert_acc(){
-            
+            if (count($_POST) > 0){
+                $password = $this->generateRandomString();
+                $_POST['password'] = md5($password);
+                $user_qr = $this->generateRandomString(32);
+                $_POST['user_qr'] = $user_qr;
+
+                $msg = 'Hello! ' . $_POST['first_name'] . ',Welcome to eMenu!<br>Username : ' . $_POST['username'] . '<br>Password : ' . $password;
+                $mailer = new QRMailer();
+                $result = $mailer->send($msg, $user_qr, $_POST['email'], $_POST['first_name']);
+                if ($result){
+                    $user = new User();
+                    $user->insert($_POST);
+                    redirect('admin/accounts');
+                }
+                else{
+                    echo $result;
+                }
+            }
+        }
+
+        private function generateRandomString($length = 8){
+            $characters = '0123456789abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ';
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++){
+                $index = rand(0, strlen($characters) - 1);
+                $randomString .= $characters[$index];
+            }
+            return $randomString;
         }
 
         public function edit_acc($id = ''){
@@ -63,6 +90,19 @@
                 $user->update($_POST['user_id'], $_POST, 'user_id');
             }
             redirect('admin/accounts');
+        }
+
+        public function delete_acc(){
+            if (isLoggedIn() && isAdmin() && count($_POST) == 1){
+                $user = new User();
+                $result = $user->delete($_POST['user_id'], 'user_id');
+                if (!$result){
+                    echo 'success';
+                }
+            }
+            else{
+                redirect('login');
+            }
         }
 
         public function products(){

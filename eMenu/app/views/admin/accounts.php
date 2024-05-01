@@ -11,6 +11,7 @@
         $link->addStyle('admin-sidebar');
         $link->addStyle('admin');
         $link->addStyle('admin-accounts');
+        $link->addStyle('modal');
     ?>
     <title><?= APP_NAME ?></title>
 </head>
@@ -57,7 +58,7 @@
                                     <td>
                                         <div class="action-buttons">
                                             <a href="<?= ROOT ?>/admin/edit_acc/<?= $user->user_id ?>"><span class="material-symbols-outlined">edit</span>&nbsp;Edit</a>
-                                            <a href="<?= ROOT ?>/admin/delete_acc/<?= $user->user_id ?>"><span class="material-symbols-outlined">delete</span>&nbsp;Delete</a>
+                                            <button type="button" class="delete-btn" user_id="<?= $user->user_id ?>"><span class="material-symbols-outlined">delete</span>&nbsp;Delete</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -72,6 +73,11 @@
             </div>            
         </section>
     </main>
+    <?php
+        $modal = new Modal();
+        $modal->load();
+    ?>
     <script type="text/javascript" src="<?= ROOT ?>/js/admin-sidebar.js"></script>
+    <script type="module" src="<?= ROOT ?>/js/admin-accounts.js"></script>
 </body>
 </html>

@@ -40,15 +40,16 @@
                 $memoryStream = fopen('php://memory', 'w');
                 fwrite($memoryStream, $qrCodeData);
                 fseek($memoryStream, 0);
-
                 $attachment = stream_get_contents($memoryStream);
                 fclose($memoryStream);
-
+                
                 $this->mail->addStringAttachment($attachment, 'qr_code.png', 'base64', 'image/png');
-    
+
                 $this->mail->send();
-            } catch (Exception $e) {
+                return true;
+            } catch (Exception $e) {                
                 echo 'Message could not be sent. Mailer Error: ', $this->mail->ErrorInfo;
+                return false;
             }
         }
     }

@@ -54,6 +54,8 @@
                             <option value="user">User</option>
                         </select>
                     </label>
+                    <input type="hidden" name="password">
+                    <input type="hidden" name="user_qr">
                     <button type="submit" class="form-btn"><span class="material-symbols-outlined">person_add</span>&nbsp;Add</button>
                 </form>
             </div>            

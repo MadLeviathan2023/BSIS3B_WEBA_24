@@ -43,6 +43,21 @@
                     <label for="username">
                         Username* : <input type="text" name="username" placeholder="e.g. JohnSmith24" maxlength="20" value="<?= $user->username ?>" autocomplete="off" required>
                     </label>
+                    <label for="email">
+                        Email* : <input type="email" name="email" placeholder="e.g. johnsmith@yahoo.com" maxlength="75" value="<?= $user->email ?>" autocomplete="off" required>
+                    </label>
+                    <label for="">
+                        Usertype* : 
+                        <select name="usertype" required>
+                            <option value=""></option>
+                            <?php
+                                $options = ['Admin', 'User'];
+                                foreach($options as $option){ ?>
+                                    <option value="<?= strtolower($option) ?>" <?= strtolower($option) == $user->usertype ? 'selected' : '' ?>><?= $option ?></option>
+                                <?php }
+                            ?>
+                        </select>
+                    </label>
                     <input type="hidden" name="user_id" value="<?= $user->user_id ?>">
                     <button type="submit" class="form-btn"><span class="material-symbols-outlined">update</span>&nbsp;Update</button>
                 </form>

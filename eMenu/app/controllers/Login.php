@@ -52,7 +52,7 @@
             try{
                 if (isset($_POST['user_qr'])){
                     $user = new User();
-                    $_POST['user_qr'] = md5($_POST['user_qr']);
+                    $_POST['user_qr'] = $_POST['user_qr'];
                     $result = $user->where($_POST);
                     if (is_array($result) && count($result) === 1){   
                         $account = $result[0];                 
