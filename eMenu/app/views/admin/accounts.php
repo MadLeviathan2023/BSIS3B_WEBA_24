@@ -10,7 +10,6 @@
         $link->addStyle('root');
         $link->addStyle('admin-sidebar');
         $link->addStyle('admin');
-        $link->addStyle('admin-accounts');
         $link->addStyle('modal');
     ?>
     <title><?= APP_NAME ?></title>
@@ -47,8 +46,8 @@
                             <th>Usertype</th>
                             <th>Actions</th>
                         </tr>
-                        <?php if (is_array($users) && count($users) > 0) { ?>
-                            <?php foreach ($users as $user) { ?>
+                        <?php if (is_array($users) && count($users) > 0):?>
+                            <?php foreach ($users as $user): ?>
                                 <tr>
                                     <td><?= $user->first_name ?></td>
                                     <td><?= $user->middle_name ?></td>
@@ -62,12 +61,12 @@
                                         </div>
                                     </td>
                                 </tr>
-                            <?php } ?>
-                        <?php } else { ?>
+                            <?php endforeach; ?>
+                        <?php else: ?>
                             <tr>
                                 <td colspan="6">No Result</td>
                             </tr>
-                        <?php } ?>
+                        <?php endif; ?>
                     </table>
                 </div>
             </div>            

@@ -41,3 +41,8 @@ input::-ms-clear {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--bright-pink-crayola);
 }
+
+.error-display{
+    color: darkred;
+    font-size: .8rem;
+}

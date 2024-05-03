@@ -25,8 +25,9 @@
         <div class="login-form">
             <form action="<?= ROOT ?>/login/auth" method="POST">
                 <h2>Welcome!</h2>
+                <?= showError($err) ?>
                 <label id="lblUsername" for="txtUsername">
-                    <input type="text" class="textbox" name="txtUsername" id="txtUsername" autocomplete="username" required>
+                    <input type="text" class="textbox" name="txtUsername" value="<?= get_post('txtUsername'); ?>" id="txtUsername" autocomplete="username" required>
                 </label>
                 <label id="lblPassword" for="txtPassword">
                     <input type="password" class="textbox" name="txtPassword" id="txtPassword" autocomplete="current-password" required>

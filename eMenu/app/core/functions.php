@@ -9,49 +9,18 @@
         header("location: ". ROOT ."/$location");
     }
 
-    function isLoggedIn(){
-        if (!isSessionStarted()){
-            session_start();
+    function get_post($key){
+        if (isset($_POST[$key])){
+            echo $_POST[$key];
         }
-        if (isset($_SESSION['username']) && isset($_SESSION['password'])){
-            $data = array(
-                'username' => $_SESSION['username'],
-                'password' => $_SESSION['password']
-            );
-            $user = new User();
-            $result = $user->where($data);
-            if (is_array($result) && count($result) == 1){
-                return true;
+    }
+
+    function showError($errors = []){
+        if (is_array($errors) && count($errors) > 0){
+            echo '<div class="error-display">';
+            foreach($errors as $error){
+                echo '<div>' . $error . '</div>';
             }
-            else{
-                return false;
-            }
+            echo '</div>';
         }
-        else{
-            return false;
-        }
-    }
-
-    function isAdmin(){
-        if (!isSessionStarted()){
-            session_start();
-        }
-        $result = false;
-        if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'admin'){
-            $result = true;
-        }
-        return $result;
-    }
-
-    function isSessionStarted(){
-        return session_status() == PHP_SESSION_ACTIVE ? true : false;
-    }
-
-    function unsetLogInSession(){
-        if (!isSessionStarted()){
-            session_start();
-        }
-        unset($_SESSION['username']);
-        unset($_SESSION['password']);
-        unset($_SESSION['usertype']);
     }

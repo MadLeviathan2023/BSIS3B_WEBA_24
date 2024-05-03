@@ -1,11 +1,13 @@
 <?php
     class Login extends Controller{
         public function index(){
-            if (!isLoggedIn()){
-                $this->view('login');
+            if (!Auth::isLoggedIn()){
+                $this->view('login', [
+                    'err' => []
+                ]);
             }
             else{
-                $usertype = $_SESSION['usertype'];
+                $usertype = $_SESSION['user']->usertype;
                 if ($usertype == 'admin'){
                     redirect('admin');
                 }
@@ -13,10 +15,6 @@
                     redirect('user');
                 }
             }
-        }
-
-        public function failed(){
-            $this->view('login');
         }
 
         public function auth(){
@@ -29,7 +27,7 @@
                 $result = $user->where($data);
                 if (is_array($result) && count($result) === 1){
                     $account = $result[0];
-                    $this->setLogInSession($account->username, $account->password, $account->usertype);
+                    Auth::setLogInSession($account);
 
                     if ($account->usertype == 'admin'){
                         redirect('admin');
@@ -39,7 +37,10 @@
                     }
                 }
                 else{
-                    redirect('login/failed');
+                    $user->errors['login'] = 'Invalid Log In!';
+                    $this->view('login', [
+                        'err' => $user->errors
+                    ]);
                 }
             }
             else{
@@ -52,11 +53,10 @@
             try{
                 if (isset($_POST['user_qr'])){
                     $user = new User();
-                    $_POST['user_qr'] = $_POST['user_qr'];
                     $result = $user->where($_POST);
                     if (is_array($result) && count($result) === 1){   
                         $account = $result[0];                 
-                        $this->setLogInSession($account->username, $account->password, $account->usertype);
+                        Auth::setLogInSession($account);
 
                         $authResult = array(
                             'status' => 'success',
@@ -90,12 +90,5 @@
                     redirect('login');
                 }
             }
-        }
-
-        private function setLogInSession($username, $password, $usertype){
-            session_start();
-            $_SESSION['username'] = $username;
-            $_SESSION['password'] = $password;
-            $_SESSION['usertype'] = $usertype;
         }
     }

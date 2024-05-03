@@ -1,5 +1,7 @@
 <?php
     class Model extends Database{
+        public $errors = [];
+
         public function __construct(){
             if (!property_exists($this, 'table')){
                 $this->table = strtolower($this::class) . 's';
@@ -85,6 +87,17 @@
             $query = "DELETE FROM $this->table WHERE $column = :$column";
             $this->query($query, $data);
 
+            return false;
+        }
+
+        public function isExists($data, $column){
+            if (isset($data[$column])){
+                $acc[$column] = $data[$column];
+                $result = $this->where($acc);
+                if (is_array($result) && count($result) > 0){
+                    return true;
+                }
+            }
             return false;
         }
     }

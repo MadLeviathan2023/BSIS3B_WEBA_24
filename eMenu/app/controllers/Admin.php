@@ -36,27 +36,48 @@
         }
 
         public function add_acc(){
-            $this->isProceed('add_acc');
+            $this->isProceed('add_acc', [
+                'err' => []
+            ]);
         }
 
         public function insert_acc(){
             if (count($_POST) > 0){
                 $password = $this->generateRandomString();
                 $_POST['password'] = md5($password);
-                $user_qr = $this->generateRandomString(32);
-                $_POST['user_qr'] = $user_qr;
 
-                $msg = 'Hello! ' . $_POST['first_name'] . ',Welcome to eMenu!<br>Username : ' . $_POST['username'] . '<br>Password : ' . $password;
-                $mailer = new QRMailer();
-                $result = $mailer->send($msg, $user_qr, $_POST['email'], $_POST['first_name']);
-                if ($result){
-                    $user = new User();
-                    $user->insert($_POST);
-                    redirect('admin/accounts');
+                $user = new User();
+                if ($user->isValid($_POST)){
+                    $code['user_qr'] = $this->generateRandomString(32);
+                    $isQrExists = $user->where($code);
+                    while (is_array($isQrExists) && count($isQrExists) > 0){
+                        $code['user_qr'] = $this->generateRandomString(32);
+                        $isQrExists = $user->where($code);
+                    }
+                    $_POST['user_qr'] = $code['user_qr'];
+
+                    $msg = 'Hello! ' . $_POST['first_name'] . ', Welcome to eMenu!<br>Username : ' . $_POST['username'] . '<br>Password : ' . $password;
+                    $mailer = new QRMailer();
+                    $result = $mailer->send($msg, $code['user_qr'], $_POST['email'], $_POST['first_name']);
+                    if ($result){
+                        $user->insert($_POST);
+                        redirect('admin/accounts');
+                    }
+                    else{
+                        $user->errors['error'] = 'Something went wrong!';
+                        $this->isProceed('add_acc', [
+                            'err' => $user->errors
+                        ]);
+                    }
                 }
                 else{
-                    echo $result;
+                    $this->isProceed('add_acc', [
+                        'err' => $user->errors
+                    ]);
                 }
+            }
+            else{
+                redirect('admin/accounts');
             }
         }
 
@@ -93,7 +114,7 @@
         }
 
         public function delete_acc(){
-            if (isLoggedIn() && isAdmin() && count($_POST) == 1){
+            if (Auth::isLoggedIn() && Auth::isAdmin() && count($_POST) == 1){
                 $user = new User();
                 $result = $user->delete($_POST['user_id'], 'user_id');
                 if (!$result){
@@ -110,7 +131,19 @@
         }
 
         public function categories(){
-            $this->isProceed('categories');
+            $category = new Category();
+            if (isset($_GET['search'])){
+                $col = array(
+                    0 => 'category_name'
+                );
+                $result = $category->like($col, $_GET['search']);
+            }
+            else{
+                $result = $category->findAll();
+            }
+            $this->isProceed('categories', [
+                'categories' => $result
+            ]);
         }
 
         public function reports(){
@@ -118,12 +151,12 @@
         }
 
         public function logout(){
-            unsetLogInSession();
+            Auth::unsetLogInSession();
             redirect('login');            
         }
         
         private function isProceed($page, $data = []){
-            if (isLoggedIn() && isAdmin()){
+            if (Auth::isLoggedIn() && Auth::isAdmin()){
                 $this->view('admin/' . $page, $data);
             }
             else{

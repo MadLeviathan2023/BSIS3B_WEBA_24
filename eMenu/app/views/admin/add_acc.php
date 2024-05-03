@@ -10,7 +10,6 @@
         $link->addStyle('root');
         $link->addStyle('admin-sidebar');
         $link->addStyle('admin');
-        $link->addStyle('admin-accounts');
     ?>
     <title><?= APP_NAME ?></title>
 </head>
@@ -31,20 +30,21 @@
                     <a href="<?= ROOT ?>/admin/accounts" class="anchor-btn"><span class="material-symbols-outlined">arrow_back</span>&nbsp;Go Back</a>
                 </div>
                 <form action="<?= ROOT ?>/admin/insert_acc" method="POST" class="post-form">
+                    <?= showError($err) ?>
                     <label for="first_name">
-                        First Name* : <input type="text" name="first_name" placeholder="e.g. John" maxlength="20" autocomplete="off" required>
+                        First Name* : <input type="text" name="first_name" value="<?= get_post('first_name') ?>" placeholder="e.g. John" maxlength="20" autocomplete="off" required>
                     </label>
                     <label for="middle_name">
-                        Middle Name : <input type="text" name="middle_name" placeholder="e.g. Dwayne" maxlength="20" autocomplete="off">
+                        Middle Name : <input type="text" name="middle_name" value="<?= get_post('middle_name') ?>" placeholder="e.g. Dwayne" maxlength="20" autocomplete="off">
                     </label>
                     <label for="last_name">
-                        Last Name* : <input type="text" name="last_name" placeholder="e.g. Smith" maxlength="20" autocomplete="off" required>
+                        Last Name* : <input type="text" name="last_name" value="<?= get_post('last_name') ?>" placeholder="e.g. Smith" maxlength="20" autocomplete="off" required>
                     </label>
                     <label for="username">
-                        Username* : <input type="text" name="username" placeholder="e.g. JohnSmith24" maxlength="20" autocomplete="off" required>
+                        Username* : <input type="text" name="username" value="<?= get_post('username') ?>" placeholder="e.g. JohnSmith24" maxlength="20" autocomplete="off" required>
                     </label>
                     <label for="email">
-                        Email* : <input type="email" name="email" placeholder="e.g. johnsmith@yahoo.com" maxlength="75" autocomplete="off" required>
+                        Email* : <input type="email" name="email" value="<?= get_post('email') ?>" placeholder="e.g. johnsmith@yahoo.com" maxlength="75" autocomplete="off" required>
                     </label>
                     <label for="">
                         Usertype* : 
