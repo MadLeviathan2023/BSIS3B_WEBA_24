@@ -16,6 +16,7 @@ body{
 
 .sidebar-container{
     width: 25vw;
+    max-width: 25vw;
 }
 
 .sidebar{
@@ -24,7 +25,7 @@ body{
     background-color: var(--oxford-blue);
     font-size: 1.2rem;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .sidebar .logo{
@@ -85,6 +86,7 @@ body{
     }
     .sidebar-container{
         width: 100%;
+        max-width: 100%;
         background-color: rgba(0, 0, 0, 0.5);
         transition: ease-in-out .5s;
         position: absolute;

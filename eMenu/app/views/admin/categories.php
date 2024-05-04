@@ -8,8 +8,10 @@
         $link->logo();
         $link->googleFonts();
         $link->addStyle('root');
+        $link->addStyle('modal');
         $link->addStyle('admin-sidebar');
         $link->addStyle('admin');
+        $link->addStyle('admin-ctgry');
     ?>
     <title><?= APP_NAME ?></title>
 </head>
@@ -63,6 +65,11 @@
             </div>
         </section>
     </main>
+    <?php
+        $modal = new Modal();
+        $modal->load();
+    ?>
     <script type="text/javascript" src="<?= ROOT ?>/js/admin-sidebar.js"></script>
+    <script type="module" src="<?= ROOT ?>/js/admin-ctgry.js"></script>
 </body>
 </html>

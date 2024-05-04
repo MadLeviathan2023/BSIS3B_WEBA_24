@@ -117,9 +117,7 @@
             if (Auth::isLoggedIn() && Auth::isAdmin() && count($_POST) == 1){
                 $user = new User();
                 $result = $user->delete($_POST['user_id'], 'user_id');
-                if (!$result){
-                    echo 'success';
-                }
+                echo 'success';
             }
             else{
                 redirect('login');
@@ -127,7 +125,78 @@
         }
 
         public function products(){
-            $this->isProceed('products');
+            $product = new Product();
+            if (isset($_GET['search'])){
+                $col = array(
+                    0 => "product_category",
+                    1 => "': '",
+                    2 => "product_name",
+                );
+                $result = $product->like($col, $_GET['search']);
+            }
+            else{
+                $result = $product->findAll();
+            }
+            $this->isProceed('products', [
+                'search' => isset($_GET['search']) ? $_GET['search'] : '',
+                'products' => $result
+            ]);
+        }
+
+        public function add_prdct(){
+            $category = new Category();
+            $categories = $category->findAll();
+            $this->isProceed('add_prdct', [
+                'categories' => $categories,
+                'err' => []
+            ]);
+        }
+
+        public function insert_prdct(){
+            if (count($_POST) > 0){
+                $category = new Category();
+                $id['category_id'] = $_POST['category_id'];
+                $ctgry = $category->where($id);
+                
+                $data = $_POST;
+                $data['product_img'] = basename($_FILES['product_img']['name']);
+                $data['product_category'] = $ctgry[0]->category_name;
+
+                $product = new Product();
+                if ($product->isExists($data, 'product_name')){
+                    $product->errors['product_name'] = 'Product Name already exists!';
+                }
+                else{
+                    $product->insert($data);
+                    $dir = 'uploads/product_img/' . $product->lastId;
+                    if (!is_dir($dir)){
+                        mkdir($dir);
+                    }
+                    
+                    if (!empty($data['product_img'])){
+                        $filepath = $dir . '/' . $data['product_img'];
+                        $tmp_name = $_FILES['product_img']['tmp_name'];
+                        $uploadResult = move_uploaded_file($tmp_name, $filepath);
+                        if (!$uploadResult){
+                            $product->errors['product_img'] = 'Inserted but failed to upload the image!';
+                        }
+                    }
+                }
+
+                if (count($product->errors) > 0){
+                    $categories = $category->findAll();
+                    $this->isProceed('add_prdct', [
+                        'categories' => $categories,
+                        'err' => $product->errors
+                    ]);
+                }
+                else{
+                    redirect('admin/products');
+                }
+            }
+            else{
+                redirect('admin/products');
+            }
         }
 
         public function categories(){
@@ -144,6 +213,66 @@
             $this->isProceed('categories', [
                 'categories' => $result
             ]);
+        }
+
+        public function add_ctgry(){
+            $this->isProceed('add_ctgry', [
+                'err' => []
+            ]);
+        }
+
+        public function insert_ctgry(){
+            $category = new Category();
+            if (count($_POST) > 0){                
+                if ($category->isExists($_POST, 'category_name')){
+                    $category->errors['category'] = 'Category Name already exists!';
+                }
+                else{
+                    $category->insert($_POST);
+                    redirect('admin/categories');
+                }
+            }
+            $this->isProceed('add_ctgry', [
+                'err' => $category->errors
+            ]);
+        }
+
+        public function edit_ctgry($id){
+            $category = new Category();
+            $data['category_id'] = $id;
+            $result = $category->where($data);
+            $this->isProceed('edit_ctgry', [
+                'category' => $result[0],
+                'id' => $id,
+                'err' => []
+            ]);
+        }
+
+        public function update_ctgry(){
+            $category = new Category();
+            if (count($_POST) > 0){
+                if ($category->isExists($_POST, 'category_name')){
+                    $category->errors['category'] = 'Category Name already exists!';
+                }
+                else{
+                    $category->update($_POST['category_id'], $_POST, 'category_id');
+                    redirect('admin/categories');
+                }
+            }
+            $this->isProceed('edit_ctgry', [
+                'err' => $category->errors
+            ]);
+        }
+
+        public function delete_ctgry(){
+            if (Auth::isLoggedIn() && Auth::isAdmin() && count($_POST) == 1){
+                $category = new Category();
+                $result = $category->delete($_POST['category_id'], 'category_id');
+                echo 'success';
+            }
+            else{
+                redirect('login');
+            }
         }
 
         public function reports(){

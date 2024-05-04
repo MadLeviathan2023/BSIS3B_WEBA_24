@@ -1,8 +1,6 @@
 <?php
     class Menu extends Controller{
         public function index(){
-            session_start();
-
             if (isset($_SESSION['table_code'])){
                 redirect('menu/table');
             }
@@ -12,8 +10,6 @@
         }
 
         public function table($tbl_code = ''){
-            session_start();
-
             if(isset($_SESSION['table_code']) && empty($tbl_code)){
                 $data['table_code'] = $_SESSION['table_code'];
             }
@@ -39,8 +35,6 @@
         }
 
         public function search(){
-            session_start();
-            
             if (isset($_SESSION['table_code'])){            
                 if (count($_GET) > 0){
                     $data['table_code'] = $_SESSION['table_code'];
