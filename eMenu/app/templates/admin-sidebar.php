@@ -4,8 +4,8 @@
         <div class="options">
             <ul>
                 <?php
-                    $options = ['Dashboard', 'Profile', 'Accounts', 'Products', 'Categories', 'Reports'];
-                    $icons = ['dashboard', 'account_circle', 'manage_accounts', 'inventory_2', 'category', 'report'];
+                    $options = ['Dashboard', 'Profile', 'Accounts', 'Tables', 'Products', 'Categories', 'Reports'];
+                    $icons = ['dashboard', 'account_circle', 'manage_accounts', 'table_bar', 'inventory_2', 'category', 'report'];
                     for($i = 0; $i < count($options); $i++){
                         $isActive = $this->active == strtolower($options[$i]) ? 'class="active"' : '';
                         ?>

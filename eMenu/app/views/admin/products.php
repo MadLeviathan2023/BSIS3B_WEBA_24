@@ -60,5 +60,6 @@
         $modal->load();
     ?>
     <script type="text/javascript" src="<?= ROOT ?>/js/admin-sidebar.js"></script>
+    <script type="module" src="<?= ROOT ?>/js/admin-prdct.js"></script>
 </body>
 </html>

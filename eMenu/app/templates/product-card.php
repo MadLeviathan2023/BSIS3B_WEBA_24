@@ -13,7 +13,7 @@
             </div>
             <div class="card-action-buttons">
                 <a href="<?= ROOT ?>/admin/edit_prdct/<?= $this->card_id ?>" class="btn"><span class="material-symbols-outlined">edit</span>Edit</a>
-                <button class="btn" prdct_id="<?= $this->card_id  ?>"><span class="material-symbols-outlined">delete</span>Delete</button>
+                <button class="delete-btn btn" prdct_id="<?= $this->card_id  ?>"><span class="material-symbols-outlined">delete</span>Delete</button>
             </div>
         </div>
     </div>

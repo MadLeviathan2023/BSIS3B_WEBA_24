@@ -11,19 +11,7 @@
         public function accounts(){
             $user = new User();
             if (isset($_GET['search'])){
-                $col = array(
-                    0 => "first_name",
-                    1 => "' '",
-                    2 => "middle_name",
-                    3 => "' '",
-                    4 => "last_name",
-                    5 => "', '",
-                    6 => "first_name",
-                    7 => "' '",
-                    8 => "last_name",
-                    9 => "username",
-                    10 => "usertype"
-                );
+                $col = ["first_name", "' '", "middle_name", "' '", "last_name", "', '", "first_name", "' '", "last_name", "username", "usertype"];
                 $result = $user->like($col, $_GET['search']);
             }
             else{
@@ -152,6 +140,14 @@
             ]);
         }
 
+        public function displayProductImg($filepath){
+            if (!str_ends_with($filepath, '/') && !empty($filepath)){
+                echo ROOT . '/uploads/product_img/' . $filepath;
+            } else {
+                echo ROOT . '/images/no-image.png';
+            }
+        }
+
         public function insert_prdct(){
             if (count($_POST) > 0){
                 $category = new Category();
@@ -163,23 +159,18 @@
                 $data['product_category'] = $ctgry[0]->category_name;
 
                 $product = new Product();
-                if ($product->isExists($data, 'product_name')){
-                    $product->errors['product_name'] = 'Product Name already exists!';
+                $product->insert($data);
+                $dir = 'uploads/product_img/' . $product->lastId;
+                if (!is_dir($dir)){
+                    mkdir($dir);
                 }
-                else{
-                    $product->insert($data);
-                    $dir = 'uploads/product_img/' . $product->lastId;
-                    if (!is_dir($dir)){
-                        mkdir($dir);
-                    }
-                    
-                    if (!empty($data['product_img'])){
-                        $filepath = $dir . '/' . $data['product_img'];
-                        $tmp_name = $_FILES['product_img']['tmp_name'];
-                        $uploadResult = move_uploaded_file($tmp_name, $filepath);
-                        if (!$uploadResult){
-                            $product->errors['product_img'] = 'Inserted but failed to upload the image!';
-                        }
+                
+                if (!empty($data['product_img'])){
+                    $filepath = $dir . '/' . $data['product_img'];
+                    $tmp_name = $_FILES['product_img']['tmp_name'];
+                    $uploadResult = move_uploaded_file($tmp_name, $filepath);
+                    if (!$uploadResult){
+                        $product->errors['product_img'] = 'Inserted but failed to upload the image!';
                     }
                 }
 
@@ -197,6 +188,80 @@
             else{
                 redirect('admin/products');
             }
+        }
+
+        public function edit_prdct($id){
+            $product = new Product();
+            $data['product_id'] = $id;
+            $prdct = $product->where($data);
+
+
+            $category = new Category();
+            $categories = $category->findAll();
+            $this->isProceed('edit_prdct', [
+                'product' => $prdct[0],
+                'categories' => $categories,
+                'err' => []
+            ]);
+        }
+
+        public function update_prdct(){
+            if (count($_POST) > 0){
+                $category = new Category();
+                $ctgry_id['category_id'] = $_POST['category_id'];
+                $ctgry = $category->where($ctgry_id);
+                
+                $data = $_POST;
+                $data['product_category'] = $ctgry[0]->category_name;
+
+                $product = new Product();
+                $product_id['product_id'] = $data['product_id'];
+                $oldData = $product->where($product_id);
+                if (!empty($_FILES['product_img']['name'])){
+                    $data['product_img'] = basename($_FILES['product_img']['name']);
+                }
+
+                $product->update($data['product_id'] , $data, 'product_id');
+                $dir = 'uploads/product_img/' . $data['product_id'];
+                if (!is_dir($dir)){
+                    mkdir($dir);
+                }
+                
+                if (!empty($data['product_img'])){
+                    $oldFile = $dir . '/' . $oldData[0]->product_img;
+                    if (file_exists($oldFile)){
+                        unlink($oldFile);
+                    }
+
+                    $filepath = $dir . '/' . $data['product_img'];
+                    $tmp_name = $_FILES['product_img']['tmp_name'];
+                    $uploadResult = move_uploaded_file($tmp_name, $filepath);
+                    if (!$uploadResult){
+                        $product->errors['product_img'] = 'Inserted but failed to upload the image!';
+                    }
+                }
+
+                if (count($product->errors) > 0){
+                    $updatedData = $product->where($product_id);
+                    $categories = $category->findAll();
+
+                    $this->isProceed('update_prdct', [
+                        'product' => $updatedData[0],
+                        'categories' => $categories,
+                        'err' => $product->errors
+                    ]);
+                }
+                else{
+                    redirect('admin/products');
+                }
+            }
+            else{
+                redirect('admin/products');
+            }
+        }
+
+        public function delete_prdct($id){
+
         }
 
         public function categories(){
