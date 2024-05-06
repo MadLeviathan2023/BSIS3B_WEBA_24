@@ -9,6 +9,7 @@
     require 'Model.php';
     require 'packages/bacon-qr-code/vendor/autoload.php';
     require 'packages/php-mailer/vendor/autoload.php';
+    require 'QrGenerator.php';
     require 'QRMailer.php';
 
     spl_autoload_register(function ($class_name){

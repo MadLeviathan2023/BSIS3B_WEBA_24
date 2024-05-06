@@ -1,8 +1,4 @@
 <?php
-    use BaconQrCode\Renderer\ImageRenderer;
-    use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
-    use BaconQrCode\Renderer\RendererStyle\RendererStyle;
-    use BaconQrCode\Writer;
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
     
@@ -30,18 +26,8 @@
                 $this->mail->Subject = 'QR Code Attachment';
                 $this->mail->Body = $msg;
     
-                $renderer = new ImageRenderer(
-                    new RendererStyle(200),
-                    new ImagickImageBackEnd()
-                );
-                
-                $writer = new Writer($renderer);
-                $qrCodeData = $writer->writeString($qrvalue);
-                $memoryStream = fopen('php://memory', 'w');
-                fwrite($memoryStream, $qrCodeData);
-                fseek($memoryStream, 0);
-                $attachment = stream_get_contents($memoryStream);
-                fclose($memoryStream);
+                $qr = new QrGenerator();
+                $attachment = $qr->generateFromStream($qrvalue);
                 
                 $this->mail->addStringAttachment($attachment, 'qr_code.png', 'base64', 'image/png');
 

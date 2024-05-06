@@ -1,6 +1,10 @@
 <?php
     class Admin extends Controller{
         public function index(){
+            $this->dashboard();
+        }
+
+        public function dashboard(){
             $this->isProceed('dashboard');
         }
 
@@ -31,15 +35,15 @@
 
         public function insert_acc(){
             if (count($_POST) > 0){
-                $password = $this->generateRandomString();
+                $password = generateRandomString();
                 $_POST['password'] = md5($password);
 
                 $user = new User();
                 if ($user->isValid($_POST)){
-                    $code['user_qr'] = $this->generateRandomString(32);
+                    $code['user_qr'] = generateRandomString(32);
                     $isQrExists = $user->where($code);
                     while (is_array($isQrExists) && count($isQrExists) > 0){
-                        $code['user_qr'] = $this->generateRandomString(32);
+                        $code['user_qr'] = generateRandomString(32);
                         $isQrExists = $user->where($code);
                     }
                     $_POST['user_qr'] = $code['user_qr'];
@@ -69,16 +73,6 @@
             }
         }
 
-        private function generateRandomString($length = 8){
-            $characters = '0123456789abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ';
-            $randomString = '';
-            for ($i = 0; $i < $length; $i++){
-                $index = rand(0, strlen($characters) - 1);
-                $randomString .= $characters[$index];
-            }
-            return $randomString;
-        }
-
         public function edit_acc($id = ''){
             $data['user_id'] = $id;
             $user = new User();
@@ -103,9 +97,118 @@
 
         public function delete_acc(){
             if (Auth::isLoggedIn() && Auth::isAdmin() && count($_POST) == 1){
-                $user = new User();
-                $result = $user->delete($_POST['user_id'], 'user_id');
-                echo 'success';
+                try{
+                    $user = new User();
+                    $result = $user->delete($_POST['user_id'], 'user_id');
+                    echo 'success';
+                }
+                catch(Exception $ex){
+                    echo $ex->getMessage();
+                }
+            }
+            else{
+                redirect('login');
+            }
+        }
+
+        public function tables(){
+            $table = new Table();
+            if (isset($_GET['search'])){
+                $col = ["table_name", "table_status"];
+                $result = $table->like($col, $_GET['search']);
+            }
+            else{
+                $result = $table->findAll();
+            }
+            $this->isProceed('tables', [
+                'search' => isset($_GET['search']) ? $_GET['search'] : '',
+                'tables' => $result
+            ]);
+        }
+
+        public function download_tbl_qr($tbl_id){
+            try{
+                if (Auth::isLoggedIn() && Auth::isAdmin()){
+                    $table = new Table();
+                    $data['table_id'] = $tbl_id;
+                    $result = $table->where($data);
+                    $tbl_url = ROOT . '/menu/table/' . $result[0]->table_code;
+                    $filename = str_replace(" ", "_", $result[0]->table_name . ".png");
+
+                    $qr = new QrGenerator();
+                    $qr->download($tbl_url, $filename);
+                }
+                redirect('admin/tables');
+            }
+            catch (Exception $ex){
+                echo $ex->getMessage();
+            }
+        }
+
+        public function add_tbl(){
+            $this->isProceed('add_tbl', [
+                'err' => []
+            ]);
+        }
+
+        public function insert_tbl(){
+            $table = new Table();
+            if (count($_POST) > 0){                
+                if ($table->isExists($_POST, 'table_name')){
+                    $table->errors['table'] = 'Table Name already exists!';
+
+                    $this->isProceed('add_tbl', [
+                        'err' => $table->errors
+                    ]);
+                }
+                else{
+                    $data = $_POST;
+                    $tbl_code['table_code'] = generateRandomString(32);
+                    $isExists = $table->where($tbl_code);
+                    while (is_array($isExists) && count($isExists) > 0){
+                        $tbl_code['table_code'] = generateRandomString(32);
+                        $isExists = $table->where($tbl_code);
+                    }
+                    $data['table_code'] = $tbl_code['table_code'];
+                    $table->insert($data);
+                    redirect('admin/tables');
+                }
+            }
+        }
+
+        public function edit_tbl($id){
+            $data['table_id'] = $id;
+            $table = new Table();
+            $result = $table->where($data);
+            if (is_array($result) && count($result) == 1){
+                $this->isProceed('edit_tbl', [
+                    'table' => $result[0],
+                    'err' => []
+                ]);
+            }
+            else{
+                redirect('admin/tables');
+            }
+        }
+
+        public function update_tbl(){
+            if (count($_POST) > 0){
+                $table = new Table();
+                $table->update($_POST['table_id'], $_POST, 'table_id');
+            }
+            redirect('admin/tables');
+        }
+
+        public function delete_tbl(){
+            if (Auth::isLoggedIn() && Auth::isAdmin() && count($_POST) == 1){
+                try{
+                    $table = new Table();
+                    $table->delete($_POST['table_id'], 'table_id');
+                    echo 'success';
+                }
+                catch(Exception $ex){
+                    echo $ex->getMessage();
+                }
             }
             else{
                 redirect('login');
@@ -151,12 +254,13 @@
         public function insert_prdct(){
             if (count($_POST) > 0){
                 $category = new Category();
-                $id['category_id'] = $_POST['category_id'];
-                $ctgry = $category->where($id);
+                $ctgry_id['category_id'] = $_POST['category_id'];
+                $ctgry = $category->where($ctgry_id);
                 
                 $data = $_POST;
                 $data['product_img'] = basename($_FILES['product_img']['name']);
                 $data['product_category'] = $ctgry[0]->category_name;
+                $data['product_status'] = 'available';
 
                 $product = new Product();
                 $product->insert($data);
@@ -215,8 +319,8 @@
                 $data['product_category'] = $ctgry[0]->category_name;
 
                 $product = new Product();
-                $product_id['product_id'] = $data['product_id'];
-                $oldData = $product->where($product_id);
+                $prdct_id['product_id'] = $data['product_id'];
+                $oldData = $product->where($prdct_id);
                 if (!empty($_FILES['product_img']['name'])){
                     $data['product_img'] = basename($_FILES['product_img']['name']);
                 }
@@ -260,8 +364,22 @@
             }
         }
 
-        public function delete_prdct($id){
-
+        public function delete_prdct(){
+            if (Auth::isLoggedIn() && Auth::isAdmin() && count($_POST) == 1){
+                try{
+                    $product = new Product();
+                    $result = $product->delete($_POST['product_id'], 'product_id');
+                    $dir = 'uploads/product_img/' . $_POST['product_id'];
+                    deleteFolderAndContents($dir);
+                    echo 'success';
+                }
+                catch(Exception $ex){
+                    echo $ex->getMessage();
+                }
+            }
+            else{
+                redirect('login');
+            }
         }
 
         public function categories(){
@@ -291,15 +409,16 @@
             if (count($_POST) > 0){                
                 if ($category->isExists($_POST, 'category_name')){
                     $category->errors['category'] = 'Category Name already exists!';
+
+                    $this->isProceed('add_ctgry', [
+                        'err' => $category->errors
+                    ]);
                 }
                 else{
                     $category->insert($_POST);
                     redirect('admin/categories');
                 }
             }
-            $this->isProceed('add_ctgry', [
-                'err' => $category->errors
-            ]);
         }
 
         public function edit_ctgry($id){
@@ -331,9 +450,14 @@
 
         public function delete_ctgry(){
             if (Auth::isLoggedIn() && Auth::isAdmin() && count($_POST) == 1){
-                $category = new Category();
-                $result = $category->delete($_POST['category_id'], 'category_id');
-                echo 'success';
+                try{
+                    $category = new Category();
+                    $result = $category->delete($_POST['category_id'], 'category_id');
+                    echo 'success';
+                }
+                catch(Exception $ex){
+                    echo $ex->getMessage();
+                }
             }
             else{
                 redirect('login');

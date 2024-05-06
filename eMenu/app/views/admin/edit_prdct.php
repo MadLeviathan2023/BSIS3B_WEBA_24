@@ -52,7 +52,7 @@
                         <select name="category_id" required>
                             <option value=""></option>
                             <?php foreach($categories as $category): ?>
-                                <option value="<?= $category->category_id ?>" <?= $category->category_id == $product->product_id ? 'selected' : '' ?>><?= $category->category_name ?></option>
+                                <option value="<?= $category->category_id ?>" <?= $category->category_id == $product->category_id ? 'selected' : '' ?>><?= $category->category_name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </label>

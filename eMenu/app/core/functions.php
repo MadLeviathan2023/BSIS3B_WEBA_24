@@ -24,3 +24,32 @@
             echo '</div>';
         }
     }
+
+    function generateRandomString($length = 8){
+        $characters = '0123456789abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ';
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++){
+            $index = rand(0, strlen($characters) - 1);
+            $randomString .= $characters[$index];
+        }
+        return $randomString;
+    }
+
+    function deleteFolderAndContents($dir){
+        if (is_dir($dir)){
+            $objects = scandir($dir);
+            foreach($objects as $object){
+                if ($object != "." && $object != ".."){
+                    if (filetype($dir . "/" . $object) == "dir"){
+                        deleteFolderAndContents($dir . "/" . $object);
+                    } else {
+                        unlink($dir . "/" . $object);
+                    }
+                }
+            }
+            reset($objects);
+            if (!rmdir($dir)){
+                echo 'Could not delete existing content, please ensure no other programs or utilities are accessing the folder or contents - ' . $dir;
+            }
+        }
+    }

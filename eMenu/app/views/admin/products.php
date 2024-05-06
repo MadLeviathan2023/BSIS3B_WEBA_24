@@ -11,6 +11,7 @@
         $link->addStyle('product-card');
         $link->addStyle('admin-sidebar');
         $link->addStyle('admin');
+        $link->addStyle('modal');
     ?>
     <title><?= APP_NAME ?></title>
 </head>

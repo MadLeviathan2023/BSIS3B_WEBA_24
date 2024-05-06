@@ -48,12 +48,36 @@ if (UPLOAD_BTN){
     }
 }
 
-const DELETE_BTN = document.querySelectorAll('delete-btn');
+const DELETE_BTN = document.querySelectorAll('button.delete-btn.btn');
 
 if (DELETE_BTN){
     DELETE_BTN.forEach((btn) => {
-        btn.onclick = () => {
-            
+        btn.onclick = async () => {
+            const PRODUCT_ID = btn.getAttribute('prdct_id');
+            var msg = await Modal.Show('Would you like to delete this product?', 'Message', ModalButton.YesNo);
+
+            if (msg == ModalResult.Yes){
+                const XHR = new XMLHttpRequest();
+                XHR.onreadystatechange = () => {
+                    if (XHR.readyState == 4) {
+                        if (XHR.status == 200) {
+                            var result = XHR.responseText;
+                            if (result == 'success'){
+                                btn.parentElement.parentElement.parentElement.parentElement.remove();
+                            }
+                            else{
+                                Modal.Show(result, 'Failed', ModalButton.OK);
+                            }
+                        }
+                        else {
+                            Modal.Show(`Error! Status code: ${XHR.status}`, 'Failed!', ModalButton.OK);
+                        }
+                    }
+                };
+                XHR.open('POST', global.ROOT + '/admin/delete_prdct', true);
+                XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                XHR.send('product_id=' + PRODUCT_ID);
+            }
         }
     });
 }
