@@ -51,7 +51,7 @@
                         <select name="usertype" required>
                             <option value=""></option>
                             <?php
-                                $options = ['Admin', 'User'];
+                                $options = ['Admin', 'Cashier'];
                                 foreach($options as $option){ ?>
                                     <option value="<?= strtolower($option) ?>" <?= strtolower($option) == $user->usertype ? 'selected' : '' ?>><?= $option ?></option>
                                 <?php }

@@ -27,7 +27,7 @@
         </section>
         <section>
             <div class="container">
-            <h3>Manage Products</h3>
+                <h3>Manage Products</h3>
                 <div class="header-container">
                     <form action="<?= ROOT ?>/admin/products">
                         <input type="text" placeholder="Search..." id="txtSearch" name="search" value="<?= $search ?>">

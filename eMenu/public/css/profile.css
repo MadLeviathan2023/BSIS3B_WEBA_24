@@ -1,0 +1,30 @@
+.profile-container{
+    display: grid;
+    grid-template-columns: 160px auto;
+    width: 100%;
+    gap: 5px;
+}
+
+input[type="text"], input[type="email"], input[type="password"]{
+    font-family: Poppins;
+}
+
+.submit-btn{
+    color: var(--ghost-white);
+    background-color: var(--teal);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    text-decoration: none;
+    padding-inline: .5rem;
+    border: none;
+    font-family: Poppins;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.submit-btn:active{
+    background-color: var(--bright-pink-crayola);
+}

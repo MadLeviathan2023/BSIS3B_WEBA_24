@@ -5,11 +5,23 @@
         }
 
         public function dashboard(){
-            $this->isProceed('dashboard');
+            $user = new User();
+            $product = new Product();
+            $table = new Table();
+            $this->isProceed('dashboard', [
+                'accounts' => $user->findAll(),
+                'products' => $product->findAll(),
+                'tables' => $table->findAll()
+            ]);
         }
 
         public function profile(){
-            $this->isProceed('profile');
+            $user = new User();
+            $user_id['user_id'] = $_SESSION['user']->user_id;
+            $acc = $user->where($user_id);
+            $this->isProceed('profile', [
+                'user' => $acc[0]
+            ]);
         }
         
         public function accounts(){

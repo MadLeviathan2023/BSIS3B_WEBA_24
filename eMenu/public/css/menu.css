@@ -11,15 +11,6 @@ section{
     margin-inline: .5rem;
 }
 
-.right-arrow{
-    color: var(--ghost-white);
-    display: inline-block;
-    background-color: var(--oxford-blue);
-    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
-    padding: .15rem 2rem .15rem .5rem;
-    user-select: none;
-}
-
 .right-chevron{
     color: var(--ghost-white);
     display: inline-block;

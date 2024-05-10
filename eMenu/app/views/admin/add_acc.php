@@ -51,7 +51,7 @@
                         <select name="usertype" required>
                             <option value=""></option>
                             <option value="admin">Admin</option>
-                            <option value="user">User</option>
+                            <option value="cashier">Cashier</option>
                         </select>
                     </label>
                     <input type="hidden" name="password">

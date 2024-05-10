@@ -23,4 +23,7 @@
             </div>
         </div>
     </div>
+    <div class="out-of-stack <?= $this->card_status != 'available' ? 'visible' : '' ?>">
+        <div>Out of Stack</div>
+    </div>
 </div>

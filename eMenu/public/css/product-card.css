@@ -84,6 +84,26 @@
     background-color: var(--bright-pink-crayola);
 }
 
+.out-of-stack{
+    position: absolute;
+    inset: 0px 0px 0px 0px;
+    background-color: rgba(0, 0, 0, 0.8);
+    place-items: center;
+    user-select: none;
+    display: none;
+}
+
+.out-of-stack.visible{
+    display: grid;
+}
+
+.out-of-stack div{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: crimson;
+    text-align: center;
+}
+
 @media screen and (max-width: 767px) {
     .card-container{
         flex-grow: 1;

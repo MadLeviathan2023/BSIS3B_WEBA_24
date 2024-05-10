@@ -8,15 +8,15 @@
         $link->logo();
         $link->googleFonts();
         $link->addStyle('root');
-        $link->addStyle('admin-sidebar');
-        $link->addStyle('admin');
+        $link->addStyle('cashier');
+        $link->addStyle('cashier-sidebar');
         $link->addStyle('profile');
     ?>
     <title><?= APP_NAME ?></title>
 </head>
 <body>
     <?php
-        $sidebar = new AdminSideBar();
+        $sidebar = new CashierSideBar();
         $sidebar->setActive('profile');
         $sidebar->load();
     ?>
@@ -49,6 +49,6 @@
             </div>
         </section>
     </main>
-    <script type="text/javascript" src="<?= ROOT ?>/js/admin-sidebar.js"></script>
+    <script type="text/javascript" src="<?= ROOT ?>/js/cashier-sidebar.js"></script>
 </body>
 </html>

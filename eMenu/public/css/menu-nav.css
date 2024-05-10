@@ -43,68 +43,19 @@ nav .options{
 
 nav .options a{
     height: 100%;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
+}
+
+nav .options a.visible{
+    display: flex;
 }
 
 nav .options li{
     color: var(--ghost-white);
 }
 
-nav .options li.active{
+nav .options li:hover{
     color: var(--lime);
-}
-
-.table-name{
-    display: grid;
-    place-items: center;
-}
-
-.table-name h4{
-    text-align: center;
-    color: var(--ghost-white);
-    margin: 0px;
-    text-overflow: ellipsis;
-}
-
-#btnMenu{
-    background-color: inherit;
-    border: none;
-    font-size: 2rem;
-    display: none;
-    color: var(--ghost-white);
-    padding-right: .5rem;
-    cursor: pointer;
-}
-
-#btnMenu.active{
-    color: var(--lime);
-}
-
-@media screen and (max-width: 767px) {
-    nav .nav-contents{
-        width: 100%;
-        position: relative;
-    }
-
-    nav ul.options{
-        display: none;
-        position: absolute;
-        background-color: var(--teal);
-        bottom: -4.3rem;
-        right: .4rem;
-        padding: 1.25rem 0 .5rem 0;
-        clip-path: polygon(85% 0, 95% 15%, 100% 15%, 100% 100%, 0 100%, 0 15%, 75% 15%);
-    }
-
-    nav ul.options li{
-        width: 100%;
-        padding: 0 1rem 0 .7rem;
-        font-size: 1.20rem;
-    }
-    
-    #btnMenu{
-        display: inline;
-    }
 }

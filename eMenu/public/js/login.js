@@ -76,8 +76,8 @@ function loginWithQR(result){
                             if (logResult.usertype == 'admin'){
                                 window.location.href = global.ROOT + '/admin';
                             }
-                            else if (logResult.usertype == 'user'){
-                                window.location.href = global.ROOT + '/user';
+                            else if (logResult.usertype == 'cashier'){
+                                window.location.href = global.ROOT + '/cashier';
                             }
                         }
                         else{

@@ -11,6 +11,7 @@
     overflow: hidden;
     flex-basis: 300px;
     border-radius: .5rem;
+    position: relative;
 }
 
 .flex-grow{
@@ -117,6 +118,26 @@
 
 .card-input button:active{
     background-color: var(--bright-pink-crayola);
+}
+
+.out-of-stack{
+    position: absolute;
+    inset: 0px 0px 0px 0px;
+    background-color: rgba(0, 0, 0, 0.8);
+    place-items: center;
+    user-select: none;
+    display: none;
+}
+
+.out-of-stack.visible{
+    display: grid;
+}
+
+.out-of-stack div{
+    font-size: 3rem;
+    rotate: 45deg;
+    font-weight: bolder;
+    color: crimson;
 }
 
 @media screen and (max-width: 767px) {

@@ -11,8 +11,8 @@
                 if ($usertype == 'admin'){
                     redirect('admin');
                 }
-                else if ($usertype == 'user'){
-                    redirect('user');
+                else if ($usertype == 'cashier'){
+                    redirect('cashier');
                 }
             }
         }
@@ -32,8 +32,8 @@
                     if ($account->usertype == 'admin'){
                         redirect('admin');
                     }
-                    else if ($account->usertype == 'user'){
-                        redirect('user');
+                    else if ($account->usertype == 'cashier'){
+                        redirect('cashier');
                     }
                 }
                 else{

@@ -30,4 +30,12 @@
             }
             return $result;
         }
+
+        public static function isCashier(){
+            $result = false;
+            if (isset($_SESSION['user']) && $_SESSION['user']->usertype == 'cashier'){
+                $result = true;
+            }
+            return $result;
+        }
     }

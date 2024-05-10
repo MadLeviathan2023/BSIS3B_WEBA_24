@@ -3,6 +3,9 @@
         <div class="card-image">
             <img src="<?= $this->img_src ?>" alt="<?= $this->card_img ?>">
         </div>
+        <div class="out-of-stack <?= $this->card_status != 'available' ? 'visible' : '' ?>">
+            <div>Out of Stack</div>
+        </div>
         <span class="card-category">
             <?= $this->card_ctgry ?>
         </span>

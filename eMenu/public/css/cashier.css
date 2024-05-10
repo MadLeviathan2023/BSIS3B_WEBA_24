@@ -1,0 +1,219 @@
+body{
+    margin: 0px;
+    display: grid;
+    grid-template-columns: 25vw 75vw;
+    background-color: var(--ghost-white);
+    color: var(--oxford-blue);
+}
+
+main{
+    height: 100vh;
+}
+
+section{
+    width: 100%;
+    overflow-y: auto;
+}
+
+section div.container{
+    margin-bottom: 1rem;
+    margin-inline: 1rem;
+}
+
+section:nth-child(1){
+    width: 100%;
+    margin: 0px;
+    overflow-y: unset;
+    background-color: var(--oxford-blue);
+}
+
+section:nth-child(1) h1{
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--ghost-white);
+    height: 50px;
+    padding-left: 1rem;
+}
+
+section:nth-child(2){
+    max-height: calc(100vh - 50px);
+}
+
+.table-container{
+    overflow-x: auto;
+}
+
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    margin-bottom: .5rem;
+}
+
+th, td{
+    white-space: nowrap;
+    padding: .5rem;
+    border: 1px solid var(--oxford-blue);
+}
+
+tr:nth-child(even){
+    background-color: rgb(209, 211, 232);
+}
+
+tr td:nth-child(2), tr td:nth-child(3), tr td:nth-child(4){
+    text-align: center;
+}
+
+.post-form{
+    width: calc(100vw - 30vw);
+    display: grid;
+}
+
+.post-form label{
+    display: grid;
+    grid-template-columns: 8rem auto;
+    margin-block: .25rem;
+    margin-bottom: .5rem;
+}
+
+.post-form label, .post-form input, .post-form select{
+    font-family: Poppins;
+    width: 100%;
+}
+
+.form-btn{
+    background-color: var(--teal);
+    font-size: 1rem;
+    border: none;
+    color: var(--ghost-white);
+    font-family: Poppins;
+    padding: .25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-btn:active{
+    background-color: var(--bright-pink-crayola);
+}
+
+.header-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.header-container select{
+    font-family: Poppins;
+}
+
+.header-container h3{
+    display: inline;
+}
+
+.header-container a{
+    display: flex;
+    align-items: center;
+    background-color: var(--teal);
+    color: var(--ghost-white);
+    text-decoration: none;
+    height: 2rem;
+    padding-inline: .5rem;
+}
+
+.header-container a:active{
+    background-color: var(--bright-pink-crayola);
+}
+
+.header-container form{
+    width: 30vw;
+    position: relative;
+}
+
+.header-container #txtSearch{
+    background-color: inherit;
+    border: none;
+    border-bottom: 2px var(--oxford-blue) solid;
+    font-size: 1rem;
+    font-family: Poppins;
+    width: 100%;
+}
+
+.header-container #txtSearch:focus{
+    outline: none;
+}
+
+.header-container button{
+    background-color: var(--ghost-white);
+    border: none;
+    position: absolute;
+    top: 50%;
+    right: -.25rem;
+    transform: translateY(calc(50% - 1.725rem));
+    font-size: 1rem;
+    height: 25px;
+}
+
+.action-buttons{
+    display: grid;
+    gap: .5rem;
+    grid-template-columns: auto auto;
+}
+
+.action-buttons a, a.anchor-btn, .action-buttons button, td button{
+    color: var(--ghost-white);
+    background-color: var(--teal);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding-inline: .5rem;
+    border: none;
+    font-family: Poppins;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.action-buttons a:active, a.anchor-btn:active, .action-buttons button:hover, td button:active{
+    background-color: var(--bright-pink-crayola);
+}
+
+@media screen and (max-width: 767px) {
+    body{
+        grid-template-columns: auto;
+    }
+    main{
+        width: 100%;
+    }
+    section:nth-child(1) h1{
+        padding: 0px;
+    }
+    .table-container{
+        width: calc(100vw - 2rem);
+    }
+    .post-form{
+        width: 100%;
+    }
+    .post-form label{
+        display: block;
+    }
+    .header-container{
+        display: block;
+    }
+    .flex{
+        display: flex;
+    }
+    .header-container form{
+        width: 100%;
+    }
+    .header-container a{
+        margin-top: .5rem;
+    }
+    .upload-btn{
+        width: 100%;
+    }
+}
