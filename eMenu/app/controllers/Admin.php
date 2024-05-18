@@ -490,7 +490,7 @@
                 $this->view('admin/' . $page, $data);
             }
             else{
-                redirect('login');  
+                redirect('login');
             }
         }
     }

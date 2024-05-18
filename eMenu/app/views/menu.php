@@ -50,5 +50,28 @@
         </section>
         <script type="text/javascript" src="<?= ROOT ?>/js/menu-card.js"></script>
     </main>
+    <button type="button" id="open-chat-btn">
+        <i class="fa-solid fa-comment"></i>
+    </button>
+    <div class="chats-container">
+        <div class="chat-container-header">
+            <h3>Chatbot</h3>
+            <button type="button" id="close-chat-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="chat-contents">
+            <ul class="chats-ul">
+                <li class="outgoing"><p>Hello!</p></li>
+                <li class="incoming"><p>Hi! I'm your Virual Assistance Chatbot</p></li>
+                <li class="outgoing"><p>Please recommend me a dish.</p></li>
+                <li class="incoming"><p>I recommend Adobo from our menu... it has x and y value... </p></li>
+            </ul>
+        </div>
+        <hr>
+        <div class="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Enter your messages here...">
+            <button type="button" id="send-chat-btn">Send <i class="fa-solid fa-angle-right"></i></button>
+        </div>
+    </div>
+    <script type="text/javascript" src="<?= ROOT ?>/js/menu.js"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 body{
     background-color: var(--ghost-white);
     margin: 0px;
+    position: relative;
 }
 
 main:nth-child(0){
@@ -19,4 +20,132 @@ section{
     padding: .15rem 1.5rem .15rem 1.8rem;
     margin-left: -1.25rem;
     user-select: none;
+}
+
+#open-chat-btn{
+    position: fixed;
+    bottom: .8rem;
+    right: .8rem;
+    color: var(--ghost-white);
+    background-color: var(--teal);
+    font-size: 2rem;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 10rem;
+    cursor: pointer;
+}
+
+#open-chat-btn:active{
+    background-color: var(--bright-pink-crayola);
+}
+
+.chats-container{
+    position: fixed;
+    bottom: .8rem;
+    right: .8rem;
+    background-color: white;
+    min-width: 35vw;
+    border: 1px var(--oxford-blue) solid;
+    display: none;
+}
+
+.chat-container-header{
+    background-color: var(--oxford-blue);
+    color: var(--ghost-white);
+    position: relative;
+}
+
+.chat-container-header h3{
+    margin: 0px;
+    padding: .5rem;
+}
+
+#close-chat-btn{
+    position: absolute;
+    top: 50%;
+    right: .8rem;
+    transform: translateY(-50%);
+    background-color: var(--oxford-blue);
+    color: var(--ghost-white);
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.chat-contents{
+    height: 70vh;
+    max-height: 70vh;
+}
+
+ul.chats-ul{
+    padding-inline: .5rem;
+    list-style: none;
+}
+
+li.outgoing{
+    display: flex;
+    width: 100%;
+    justify-content: end;
+}
+
+li.outgoing p{
+    max-width: 45%;
+    background-color: var(--ghost-white);
+    padding: .5rem;
+    border-radius: .5rem;
+}
+
+li.incoming{
+    display: flex;
+    width: 100%;
+    justify-content: start;
+}
+
+li.incoming p{
+    max-width: 45%;
+    background-color: var(--oxford-blue);
+    padding: .5rem;
+    border-radius: .5rem;
+    color: var(--ghost-white);
+}
+
+.chat-input-container{
+    display: grid;
+    grid-template-columns: auto 70px;
+    padding-bottom: .5rem;
+    padding-inline: .5rem;
+}
+
+.chat-input-container :is(input, button){
+    height: 100%;
+    font-family: Poppins;
+}
+
+#chat-input{
+    border: none;
+    font-size: .85rem;
+}
+
+#chat-input:focus{
+    outline: none;
+}
+
+#send-chat-btn{
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+    .chats-container{
+        width: 100vw;
+        height: 100vh;
+        inset: 0px;
+        z-index: 2;
+    }
+    .chat-contents{
+        height: calc(100vh - 110px);
+        max-height: calc(100vh - 110px);
+    }
 }

@@ -34,7 +34,7 @@
                         <label for="">Last Name:*</label><input type="text" value="<?= $user->last_name ?>">
                         <label for="">Username:*</label><input type="text" value="<?= $user->username ?>">
                         <label for="">Email:*</label><input type="email" value="<?= $user->email ?>">
-                        <button type="submit" class="submit-btn">Submit</button>
+                        <button type="submit" class="submit-btn">Update Profile</button>
                     </div>
                 </form>
                 <h3>Change Password</h3>
