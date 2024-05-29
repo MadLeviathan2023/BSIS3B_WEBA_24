@@ -1,0 +1,7 @@
+th:nth-child(1){
+    width: 75%;
+}
+
+.action-buttons{
+    grid-template-columns: auto auto auto;
+}

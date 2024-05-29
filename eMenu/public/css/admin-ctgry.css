@@ -1,0 +1,7 @@
+th:nth-child(1){
+    width: 75%;
+}
+
+.post-form label{
+    grid-template-columns: 10rem auto;
+}

@@ -1,0 +1,87 @@
+#payment-dialog{
+    background-color: var(--oxford-blue);
+    color: var(--ghost-white);
+    border: 2px solid var(--ghost-white);
+    max-width: 70%;
+    position: relative;
+}
+
+#payment-dialog h3, #payment-dialog h4{
+    margin: 0px;
+}
+
+#payment-dialog h4{
+    font-style: italic;
+}
+
+#payment-dialog .close-btn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: inherit;
+    border: none;
+    color: var(--ghost-white);
+    cursor: pointer;
+}
+
+.receipt-container{
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.receipt-container td{
+    text-align: center;
+}
+
+#payment-dialog td{
+    padding: 0px;
+    height: 1.5rem;
+}
+
+#payment-dialog tr:nth-child(even){
+    background-color: inherit;
+}
+
+.total-container{
+    text-align: end;
+}
+
+#payment-dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.payment select{
+    font-family: Poppins;
+}
+
+#ref-no{
+    font-family: Poppins;
+}
+
+.payment{
+    margin-top: .5rem;
+}
+
+.set-paid-btn-container{
+    margin-top: 1rem;
+}
+
+#set-paid-btn{
+    background-color: var(--teal);
+    color: var(--ghost-white);
+    border: none;
+    cursor: pointer;
+    font-family: Poppins;
+    width: 100%;
+    font-size: 1rem;
+}
+
+#set-paid-btn:active{
+    background-color: var(--bright-pink-crayola);
+}
+
+@media screen and (max-width: 767px) {
+    #payment-dialog{
+        max-width: 85%;
+    }
+}

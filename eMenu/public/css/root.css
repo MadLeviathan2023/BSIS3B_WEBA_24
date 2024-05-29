@@ -1,9 +1,9 @@
 :root{
-    --oxford-blue: #0a2342ff;
-    --ghost-white: #e8e9f3ff;
-    --bright-pink-crayola: #fc6471ff;
-    --teal: #028090ff;
-    --lime: #ceff1aff;
+    --oxford-blue: #0a2342;
+    --ghost-white: #e8e9f3;
+    --bright-pink-crayola: #fc6471;
+    --teal: #028090;
+    --lime: #ceff1a;
     font-size: 16px;
     font-family: Poppins;
 }
@@ -16,4 +16,43 @@
 input::-ms-reveal,
 input::-ms-clear {
     display: none;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+::-webkit-scrollbar {
+    height: .5rem;
+    width: .5rem;
+}
+  
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: var(--teal);
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: var(--bright-pink-crayola);
+}
+
+.error-display{
+    color: darkred;
+    font-size: .8rem;
+}
+
+.right-arrow{
+    color: var(--ghost-white);
+    display: inline-block;
+    background-color: var(--oxford-blue);
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
+    padding: .15rem 2rem .15rem .5rem;
+    user-select: none;
 }

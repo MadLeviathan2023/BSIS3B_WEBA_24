@@ -26,3 +26,13 @@ export function isValidURL(urlString){
         return false;
     }
 }
+
+const rootStyles = getComputedStyle(document.documentElement);
+
+export const Colors = Object.freeze({
+    OxfordBlue: rootStyles.getPropertyValue('--oxford-blue'),
+    GhostWhite: rootStyles.getPropertyValue('--ghost-white'),
+    BrightPinkCrayola: rootStyles.getPropertyPriority('--bright-pink-crayola'),
+    Teal: rootStyles.getPropertyValue('--teal'),
+    Lime: rootStyles.getPropertyValue('--lime')
+});

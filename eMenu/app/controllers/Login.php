@@ -1,11 +1,20 @@
 <?php
     class Login extends Controller{
         public function index(){
-            $this->view('login');
-        }
-
-        public function failed(){
-            $this->view('login');            
+            if (!Auth::isLoggedIn()){
+                $this->view('login', [
+                    'err' => []
+                ]);
+            }
+            else{
+                $usertype = $_SESSION['user']->usertype;
+                if ($usertype == 'admin'){
+                    redirect('admin');
+                }
+                else if ($usertype == 'cashier'){
+                    redirect('cashier');
+                }
+            }
         }
 
         public function auth(){
@@ -18,16 +27,24 @@
                 $result = $user->where($data);
                 if (is_array($result) && count($result) === 1){
                     $account = $result[0];
+                    Auth::setLogInSession($account);
+
                     if ($account->usertype == 'admin'){
                         redirect('admin');
                     }
-                    else if ($account->usertype == 'user'){
-                        redirect('user');
+                    else if ($account->usertype == 'cashier'){
+                        redirect('cashier');
                     }
                 }
                 else{
-                    redirect('login/failed');
+                    $user->errors['login'] = 'Invalid Log In!';
+                    $this->view('login', [
+                        'err' => $user->errors
+                    ]);
                 }
+            }
+            else{
+                redirect('login');
             }
         }
 
@@ -36,14 +53,14 @@
             try{
                 if (isset($_POST['user_qr'])){
                     $user = new User();
-                    $_POST['user_qr'] = md5($_POST['user_qr']);
                     $result = $user->where($_POST);
-                    if (is_array($result) && count($result) === 1){
-                        //Set Session code here(Not done yet)
+                    if (is_array($result) && count($result) === 1){   
+                        $account = $result[0];                 
+                        Auth::setLogInSession($account);
 
                         $authResult = array(
                             'status' => 'success',
-                            'usertype' => $result[0]->usertype
+                            'usertype' => $account->usertype
                         );
                     }
                     else{
@@ -53,6 +70,9 @@
                             'status' => 'failed'
                         );
                     }
+                }
+                else{
+                    redirect('login');
                 }
             }
             catch(Exception $ex){

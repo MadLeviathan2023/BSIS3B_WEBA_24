@@ -1,0 +1,150 @@
+.card-section{
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+
+.card-container{
+    background-color: var(--ghost-white);
+    border: 2px solid var(--oxford-blue);
+    color: var(--ghost-white);
+    overflow: hidden;
+    flex-basis: 300px;
+    border-radius: .5rem;
+    position: relative;
+}
+
+.flex-grow{
+    flex-grow: 1;
+}
+
+.card-contents{
+    background-color: inherit;
+    position: relative;
+}
+
+.card-contents img{
+    object-fit: cover;
+    width: 100%;
+    height: 250px;
+    border: none;
+}
+
+.card-category{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: var(--oxford-blue);
+    color: var(--ghost-white);
+    padding-inline: .5rem;
+}
+
+.card-details{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: var(--oxford-blue);
+    color: var(--ghost-white);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.card-details h3, .card-details h5{
+    margin: 0px;
+}
+
+.card-info{
+    max-width: 50%;
+}
+
+.card-info h3{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-input{
+    max-width: 50%;
+    padding-block: .25rem;
+}
+
+.card-qty{
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.card-qty button{
+    position: absolute;
+    top: .5px;
+    background-color: var(--teal);
+    color: var(--ghost-white);
+    font-family: Poppins;
+    font-weight: bold;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 2.5rem;
+}
+
+.btn-subtract-one{
+    left: 0px;
+}
+
+.btn-add-one{
+    right: 0px;
+}
+
+.txt-qty{
+    width: 100%;
+    text-align: center;
+    font-family: Poppins;
+}
+
+.card-button button{
+    margin-top: .25rem;
+    width: 100%;
+    background-color: var(--teal);
+    color: var(--ghost-white);
+    font-family: Poppins;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+.card-input button:active{
+    background-color: var(--bright-pink-crayola);
+}
+
+.out-of-stack{
+    position: absolute;
+    inset: 0px 0px 0px 0px;
+    background-color: rgba(0, 0, 0, 0.8);
+    place-items: center;
+    user-select: none;
+    display: none;
+}
+
+.out-of-stack.visible{
+    display: grid;
+}
+
+.out-of-stack div{
+    font-size: 3rem;
+    rotate: 45deg;
+    font-weight: bolder;
+    color: crimson;
+}
+
+@media screen and (max-width: 767px) {
+    .card-container{
+        flex-grow: 1;
+    }
+    .card-contents img{
+        height: 300px;
+    }
+}
